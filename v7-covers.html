@@ -6,10 +6,10 @@
 <title>Meet the Team, Option 7: Magazine covers | OOTB Pottery</title>
 <meta name="robots" content="noindex, nofollow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@500;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@500;800;900&family=Space+Mono:wght@400;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="shared.css">
 <style>
-body{margin:0;background:#fff;color:#121212;font-family:"Space Mono",ui-monospace,monospace}
+body{margin:0;background:#fff;color:#121212;font-family:"Roboto Mono",ui-monospace,monospace}
 
 /* ===== Section: a newsstand of OOTB magazine covers, one per person ===== */
 .mag-sec{--blue:#1E54A3;padding:60px 16px 72px;background:#f4f1ec;overflow:hidden}
@@ -52,17 +52,18 @@ body{margin:0;background:#fff;color:#121212;font-family:"Space Mono",ui-monospac
   .cover .mast{font-size:25vw}
   .mag-foot{text-align:center}
 }
+.mag-head h2{font-family:"Space Mono",monospace;font-weight:700;letter-spacing:-.03em;text-transform:none;font-size:clamp(32px,6vw,52px)}
+.cover .lines li:first-child{font-family:"Roboto Mono",monospace}
 </style>
 </head>
 <body>
 
 <section class="mag-sec" aria-label="Meet the OOTB team">
   <header class="mag-head">
-    <h2>The <span>OOTB</span><br>issue</h2>
-    <p>Every one of us gets a cover. Pets get a sticker. Tap a cover to read the story.</p>
+    <h2>Meet the team</h2>
+    <p>Click on anyone to get to know them.</p>
   </header>
   <div class="stand" id="stand"></div>
-  <p class="mag-foot">Covers with a letter are still at the printer.</p>
 </section>
 
 <script src="team.js"></script>
@@ -77,14 +78,13 @@ document.getElementById('stand').innerHTML = people().map((m, n) => {
   const lines = [m.role, ...m.tags].slice(0, 4);
   return `<div class="cell">
     <button class="cover" type="button" data-i="${idx(m)}" aria-label="Meet ${m.name}, ${m.role}" style="--bg:${bg};--fg:${fg};--mast:${mast}">
-      <span class="issue"><span>Issue ${String(n + 1).padStart(2, '0')}</span><span>Leslieville · Markham</span></span>
       <span class="mast" aria-hidden="true">OOTB</span>
       <span class="star">${photo(m) ? `<img src="${photo(m)}" alt="" loading="lazy">` : `<span class="ini">${m.name[0]}</span>`}</span>
       <ul class="lines">${lines.map(l => `<li>${l}</li>`).join('')}</ul>
-      <span class="name"><small>Cover story</small><b>${m.name}</b></span>
+      <span class="name"><b>${m.name}</b></span>
     </button>
     ${pets.map(p => `<button class="guest" type="button" data-i="${idx(p)}" aria-label="Meet ${p.name}, ${p.role}">
-      <img src="${photo(p)}" alt="" loading="lazy"><span>Special guest<br>${p.name}</span></button>`).join('')}
+      <img src="${photo(p)}" alt="" loading="lazy"><span>${p.name}</span></button>`).join('')}
   </div>`;
 }).join('');
 document.querySelectorAll('.cover,.guest').forEach(b => b.onclick = () => open(+b.dataset.i, b));

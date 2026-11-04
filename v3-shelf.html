@@ -6,10 +6,10 @@
 <title>Meet the Team, Option 3: Drying shelf | OOTB Pottery</title>
 <meta name="robots" content="noindex, nofollow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@500;800&family=Permanent+Marker&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@500;800&family=Permanent+Marker&family=Space+Mono:wght@400;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="shared.css">
 <style>
-body{margin:0;background:#fff;color:#121212;font-family:"Space Mono",ui-monospace,monospace}
+body{margin:0;background:#fff;color:#121212;font-family:"Roboto Mono",ui-monospace,monospace}
 
 /* ===== Section: plaster studio wall with wooden drying shelves ===== */
 .shelf-sec{--blue:#1E54A3;--wood:#c89a66;padding:60px 16px 70px;overflow:hidden;
@@ -18,7 +18,7 @@ body{margin:0;background:#fff;color:#121212;font-family:"Space Mono",ui-monospac
     radial-gradient(90% 60% at 50% 0,#fbf7f0,transparent 70%),
     #efe8dc}
 .shelf-head{position:relative;max-width:1000px;margin:0 auto 26px;text-align:center}
-.shelf-head h2{margin:0;font-family:"League Spartan",sans-serif;font-weight:800;font-size:clamp(36px,7.5vw,70px);letter-spacing:-.02em;line-height:.95;color:#2a2118}
+.shelf-head h2{margin:0;font-family:"Space Mono",monospace;font-weight:800;font-size:clamp(36px,7.5vw,70px);letter-spacing:-.02em;line-height:.95;color:#2a2118}
 .shelf-head h2 em{font-style:normal;color:var(--blue)}
 /* masking tape note stuck to the wall */
 .tape{display:inline-block;position:relative;font-family:"Permanent Marker",cursive;color:#2a2118;background:rgba(240,226,184,.92);
@@ -60,7 +60,7 @@ body{margin:0;background:#fff;color:#121212;font-family:"Space Mono",ui-monospac
 .pot .b{left:5px;right:5px;bottom:0;height:110px;border-radius:48% 48% 40% 40%/55% 55% 45% 45%}
 .pot .n{left:34px;right:34px;bottom:100px;height:38px;border-radius:6px}
 .pot .l{left:26px;right:26px;bottom:132px;height:12px;border-radius:50%;background:#9d9282}
-.pot b{position:absolute;left:0;right:0;top:66px;text-align:center;font:800 34px "League Spartan",sans-serif;color:rgba(255,255,255,.75)}
+.pot b{position:absolute;left:0;right:0;top:66px;text-align:center;font:800 34px "Space Mono",monospace;color:rgba(255,255,255,.75)}
 
 .shelf-foot{text-align:center;margin:60px 0 0;font-size:12px;color:#6b5f4e}
 @media (max-width:760px){
@@ -73,18 +73,17 @@ body{margin:0;background:#fff;color:#121212;font-family:"Space Mono",ui-monospac
   .shelf .tags .tape small{display:none}
   .shelf .plank{height:26px}
 }
+.shelf-head h2{font-family:"Space Mono",monospace;font-weight:700;letter-spacing:-.03em;text-transform:none;font-size:clamp(32px,6vw,52px)}
 </style>
 </head>
 <body>
 
 <section class="shelf-sec" aria-label="Meet the OOTB team">
   <header class="shelf-head">
-    <h2>Meet the <em>OOTB</em> team</h2>
-    <span class="tape">Drying shelf! Please handle with care</span>
-    <p>Freshly made and left to dry. Pick one up to meet them.</p>
+    <h2>Meet the team</h2>
+    <p>Click on anyone to get to know them.</p>
   </header>
   <div class="shelves" id="shelves"></div>
-  <p class="shelf-foot">The grey pots are still drying. Photos coming soon.</p>
 </section>
 
 <script src="team.js"></script>
@@ -108,7 +107,7 @@ function shelves(cap){
 }
 const piece = m => `<button class="piece${m.pet ? ' pet' : ''}" type="button" data-i="${idx(m)}" aria-label="Meet ${m.name}, ${m.role}">${
   photo(m) ? `<img src="${photo(m)}" alt="" loading="lazy">` : `<span class="pot" aria-hidden="true"><i class="b"></i><i class="n"></i><i class="l"></i><b>${m.name[0]}</b></span>`}</button>`;
-const label = m => `<span class="slot${m.pet ? ' pet' : ''}"><span class="tape${m.pet ? ' pet' : ''}" style="transform:rotate(${tilt()})">${m.name}<small>${m.pet ? '' : photo(m) ? m.role : 'still drying'}</small></span></span>`;
+const label = m => `<span class="slot${m.pet ? ' pet' : ''}"><span class="tape${m.pet ? ' pet' : ''}" style="transform:rotate(${tilt()})">${m.name}<small>${m.pet ? '' : m.role}</small></span></span>`;
 const phone = matchMedia('(max-width:760px)');
 function render(){
   document.getElementById('shelves').innerHTML = shelves(phone.matches ? 2.2 : 4).map(row => `<div class="shelf">

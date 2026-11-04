@@ -6,16 +6,16 @@
 <title>Meet the Team, Option 6: Polaroids | OOTB Pottery</title>
 <meta name="robots" content="noindex, nofollow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@500;800&family=Caveat:wght@600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@500;800&family=Caveat:wght@600;700&family=Space+Mono:wght@400;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="shared.css">
 <style>
-body{margin:0;background:#fff;color:#121212;font-family:"Space Mono",ui-monospace,monospace}
+body{margin:0;background:#fff;color:#121212;font-family:"Roboto Mono",ui-monospace,monospace}
 
 /* ===== Section: polaroids pegged on strings across the studio wall ===== */
 .pol-sec{--blue:#1E54A3;padding:60px 0 70px;overflow:hidden;
   background:radial-gradient(80% 60% at 50% 0,#ffffff,transparent 70%),linear-gradient(#f6f1ea,#efe7dc)}
 .pol-head{text-align:center;padding:0 16px;margin:0 auto 10px;max-width:640px}
-.pol-head h2{margin:0;font:800 clamp(38px,8vw,72px)/.95 "League Spartan",sans-serif;letter-spacing:-.02em;color:#1d1a16}
+.pol-head h2{margin:0;font:800 clamp(38px,8vw,72px)/.95 "Space Mono",monospace;letter-spacing:-.02em;color:#1d1a16}
 .pol-head h2 span{font:700 1.05em "Caveat",cursive;color:var(--blue);letter-spacing:0;display:inline-block;transform:rotate(-4deg)}
 .pol-head p{margin:12px 0 0;font-size:14px;color:#5d5346}
 
@@ -57,17 +57,17 @@ body{margin:0;background:#fff;color:#121212;font-family:"Space Mono",ui-monospac
   .swipe{display:block!important}
 }
 .swipe{display:none;text-align:center;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#7a6e5f;margin:0 0 6px}
+.pol-head h2{font-family:"Space Mono",monospace;font-weight:700;letter-spacing:-.03em;text-transform:none;font-size:clamp(32px,6vw,52px)}
 </style>
 </head>
 <body>
 
 <section class="pol-sec" aria-label="Meet the OOTB team">
   <header class="pol-head">
-    <h2>Meet the <span>OOTB fam</span></h2>
-    <p>Snapshots from the studio, pets included. Tap a photo to meet them.</p>
+    <h2>Meet the team</h2>
+    <p>Click on anyone to get to know them.</p>
   </header>
   <div id="lines"></div>
-  <p class="pol-foot">more photos developing...</p>
 </section>
 
 <script src="team.js"></script>
@@ -78,7 +78,7 @@ const TILTS = [-4, 3, -2, 5, -3, 2, -5, 4];
 const pol = (m, mini) => `<button class="pol${mini ? ' mini' : ''}" type="button" data-i="${idx(m)}" aria-label="Meet ${m.name}, ${m.role}"
   style="${mini ? '' : `--tilt:${TILTS[idx(m) % TILTS.length]}deg`}">${mini ? '<i class="peg2"></i>' : ''}
   <span class="pic">${photo(m) ? `<img src="${photo(m)}" alt="" loading="lazy">` : `<span class="ini">${m.name[0]}</span>`}</span>
-  <span class="cap">${m.name}<small>${photo(m) ? m.role : 'developing'}</small></span></button>`;
+  <span class="cap">${m.name}<small>${m.role}</small></span></button>`;
 /* 4 people per string; on phones each string scrolls sideways */
 const ppl = people(), rows = [];
 for (let i = 0; i < ppl.length; i += 4) rows.push(ppl.slice(i, i + 4));

@@ -26,18 +26,18 @@ const idx = m => TEAM.indexOf(m);
 const photo = m => m.hd ? `img/hd/${m.name.toLowerCase()}.png` : null;
 
 const VERSIONS = [
-  ["index.html", "1. Poster"],
-  ["v2-tiles.html", "2. Glaze test tiles"],
-  ["v3-shelf.html", "3. Drying shelf"],
-  ["v4-cards.html", "4. Crew cards"],
-  ["v5-plan.html", "5. Studio plan"],
-  ["v6-polaroids.html", "6. Polaroids"],
-  ["v7-covers.html", "7. Magazine covers"],
+  ["index.html", "Poster"],
+  ["v2-tiles.html", "Glaze test tiles"],
+  ["v3-shelf.html", "Drying shelf"],
+  ["v4-cards.html", "Crew cards"],
+  ["v5-plan.html", "Studio plan"],
+  ["v6-polaroids.html", "Polaroids"],
+  ["v7-covers.html", "Magazine covers"],
 ];
 function versionNav(active){
   const nav = document.createElement('nav');
   nav.className = 'vnav';
-  nav.innerHTML = '<b>Team section options:</b>' + VERSIONS.map(([href, label]) =>
+  nav.innerHTML = '<b>Team section:</b>' + VERSIONS.map(([href, label]) =>
     `<a href="${href}"${href === active ? ' aria-current="page"' : ''}>${label}</a>`).join('');
   document.body.prepend(nav);
 }

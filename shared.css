@@ -1,27 +1,28 @@
 /* Shared by v2, v3, v4: version switcher and the popup */
-.vnav{display:flex;flex-wrap:wrap;gap:6px 8px;align-items:center;justify-content:center;padding:10px 16px;background:#fff;border-bottom:1px dashed #1E54A3;
-  font:12px "Space Mono",ui-monospace,monospace;color:#1E54A3;position:relative;z-index:5}
-.vnav b{margin-right:6px}
-.vnav a{color:#1E54A3;text-decoration:none;border:1.5px solid #1E54A3;border-radius:20px;padding:3px 12px}
-.vnav a[aria-current],.vnav a:hover{background:#1E54A3;color:#fff}
+.vnav{display:flex;flex-wrap:wrap;gap:6px 20px;align-items:baseline;justify-content:center;padding:14px 16px;background:#fff;border-bottom:1px solid #e4e4e4;
+  font:13px "Roboto Mono",ui-monospace,monospace;color:#121212;position:relative;z-index:5}
+.vnav b{font-weight:500;color:#777}
+.vnav a{color:#121212;text-decoration:none;padding-bottom:2px;border-bottom:2px solid transparent}
+.vnav a:hover{color:#1E54A3}
+.vnav a[aria-current]{color:#1E54A3;border-bottom-color:#1E54A3}
 
-.tm-pop{--blue:#1E54A3;position:fixed;inset:0;z-index:50;display:none;place-items:center;padding:16px;background:rgba(18,18,18,.55);font-family:"Space Mono",ui-monospace,monospace;color:#121212}
+.tm-pop{--blue:#1E54A3;position:fixed;inset:0;z-index:50;display:none;place-items:center;padding:16px;background:rgba(18,18,18,.55);font-family:"Roboto Mono",ui-monospace,monospace;color:#121212}
 .tm-pop.open{display:grid;animation:tm-fade .2s}
 .tm-card{position:relative;width:min(960px,100%);max-height:calc(100vh - 32px);overflow:auto;background:#fff;border-radius:22px;
   display:grid;grid-template-columns:1fr 1fr;box-shadow:0 30px 80px rgba(0,0,0,.35);animation:tm-rise .25s}
 .tm-card .photo{position:relative;min-height:440px;display:grid;place-items:center;overflow:hidden;background-size:cover!important;background-position:center!important}
 .tm-card .photo img{position:absolute;inset:7%;width:86%;height:86%;object-fit:contain;filter:drop-shadow(0 10px 14px rgba(18,18,18,.25))}
-.tm-card .photo .ini{font-family:"League Spartan",sans-serif;font-weight:800;font-size:120px;color:#fff;text-shadow:0 4px 0 rgba(0,0,0,.12)}
+.tm-card .photo .ini{font-family:"Space Mono",monospace;font-weight:700;font-size:120px;color:#fff;text-shadow:0 4px 0 rgba(0,0,0,.12)}
 .tm-card .body{padding:36px 34px;display:flex;flex-direction:column}
 .tm-card .role{font-size:12px;text-transform:uppercase;letter-spacing:.12em;color:var(--blue);margin:0 0 4px}
-.tm-card h3{margin:0 0 14px;font-family:"League Spartan",sans-serif;font-weight:800;font-size:42px;letter-spacing:-.01em}
-.tm-card .tags{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 18px;padding:0;list-style:none}
-.tm-card .tags li{font-size:12px;border:1.5px solid var(--blue);color:var(--blue);border-radius:20px;padding:3px 10px}
+.tm-card h3{margin:0 0 12px;font-family:"Space Mono",monospace;font-weight:700;font-size:38px;letter-spacing:-.03em}
+.tm-card .tags{display:flex;flex-wrap:wrap;gap:4px 0;margin:0 0 18px;padding:0;list-style:none;font-size:13px;color:var(--blue)}
+.tm-card .tags li+li::before{content:"/";margin:0 10px;color:#b5b5b5}
 .tm-card .bio{margin:0;font-size:15px;line-height:1.7}
 .tm-card .nav{margin-top:auto;padding-top:24px;display:flex;justify-content:space-between;gap:10px}
-.tm-card .nav button,.tm-card .x{font:inherit;cursor:pointer;border:1.5px solid var(--blue);color:var(--blue);background:#fff;border-radius:30px;padding:8px 16px}
-.tm-card .nav button:hover{background:var(--blue);color:#fff}
-.tm-card .x{position:absolute;top:12px;right:12px;width:40px;height:40px;padding:0;font-size:20px;line-height:1;z-index:1}
+.tm-card .nav button,.tm-card .x{font:inherit;font-size:14px;cursor:pointer;border:0;color:#121212;background:none;padding:6px 0}
+.tm-card .nav button:hover{color:var(--blue);text-decoration:underline;text-underline-offset:4px}
+.tm-card .x{position:absolute;top:12px;right:14px;width:40px;height:40px;padding:0;font-size:26px;line-height:1;z-index:1}
 @keyframes tm-fade{from{opacity:0}}
 @keyframes tm-rise{from{transform:translateY(20px);opacity:0}}
 @media (max-width:760px){

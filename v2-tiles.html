@@ -6,10 +6,10 @@
 <title>Meet the Team, Option 2: Glaze test tiles | OOTB Pottery</title>
 <meta name="robots" content="noindex, nofollow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@500;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@500;800&family=Space+Mono:wght@400;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="shared.css">
 <style>
-body{margin:0;background:#fff;color:#121212;font-family:"Space Mono",ui-monospace,monospace}
+body{margin:0;background:#fff;color:#121212;font-family:"Roboto Mono",ui-monospace,monospace}
 
 /* ===== Section: studio pegboard wall with glaze test tiles ===== */
 .tiles-sec{--blue:#1E54A3;padding:64px 16px 80px;
@@ -19,7 +19,7 @@ body{margin:0;background:#fff;color:#121212;font-family:"Space Mono",ui-monospac
   overflow:hidden}
 .tiles-head{text-align:center;max-width:640px;margin:0 auto 46px}
 .tiles-head .kicker{display:inline-block;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#6b3e26;border:1.5px dashed #6b3e26;border-radius:4px;padding:4px 10px;transform:rotate(-1.5deg);background:#f7f2e8}
-.tiles-head h2{margin:14px 0 10px;font-family:"League Spartan",sans-serif;font-weight:800;font-size:clamp(34px,7vw,64px);line-height:.95;letter-spacing:-.02em;color:var(--blue)}
+.tiles-head h2{margin:14px 0 10px;font-family:"Space Mono",monospace;font-weight:800;font-size:clamp(34px,7vw,64px);line-height:.95;letter-spacing:-.02em;color:var(--blue)}
 .tiles-head p{margin:0;font-size:14px;color:#5b5346}
 
 .tiles{list-style:none;margin:0 auto;padding:0;max-width:1120px;display:flex;flex-wrap:wrap;justify-content:center;gap:54px 28px}
@@ -53,7 +53,7 @@ body{margin:0;background:#fff;color:#121212;font-family:"Space Mono",ui-monospac
     radial-gradient(6px 16px at 90% 0,var(--g3) 96%,transparent)}
 .tile img{position:absolute;left:8%;right:8%;top:13%;width:84%;height:62%;object-fit:contain;
   filter:drop-shadow(0 6px 6px rgba(0,0,0,.28));transition:transform .35s}
-.tile .ini{position:absolute;left:0;right:0;top:20%;text-align:center;font:800 76px/1 "League Spartan",sans-serif;color:rgba(107,62,38,.28)}
+.tile .ini{position:absolute;left:0;right:0;top:20%;text-align:center;font:800 76px/1 "Space Mono",monospace;color:rgba(107,62,38,.28)}
 /* written in underglaze pencil on the raw clay */
 .tile .label{position:absolute;left:10px;right:10px;bottom:9px;color:#5a321e;line-height:1.15}
 .tile .label b{display:block;font:700 15px "Space Mono",monospace;letter-spacing:.06em;text-transform:uppercase}
@@ -73,18 +73,17 @@ body{margin:0;background:#fff;color:#121212;font-family:"Space Mono",ui-monospac
 .tile.mini img{top:16%;height:58%}
 .tiles-foot{text-align:center;margin:56px 0 0;font-size:12px;color:#6b5f4e}
 @media (max-width:520px){.tiles{gap:44px 18px}.tiles li{width:calc(50% - 9px)}.tile.mini{right:8%;width:70%}.tiles li.has-pet .tile.mini{bottom:-150px}.tiles li.has-pet{margin-bottom:140px}.tile .label small span:last-child{display:none}.tiles-head{margin-bottom:30px}.tile .label b{font-size:13px}}
+.tiles-head h2{font-family:"Space Mono",monospace;font-weight:700;letter-spacing:-.03em;text-transform:none;font-size:clamp(32px,6vw,52px);color:#121212}
 </style>
 </head>
 <body>
 
 <section class="tiles-sec" aria-label="Meet the OOTB team">
   <header class="tiles-head">
-    <span class="kicker">Test tiles · cone 6</span>
-    <h2>Meet the crew<br>behind the clay</h2>
-    <p>Every tile is one of us, each in our own glaze. Tap a tile to say hi.</p>
+    <h2>Meet the team</h2>
+    <p>Click on anyone to get to know them.</p>
   </header>
   <ul class="tiles" id="tiles"></ul>
-  <p class="tiles-foot">Tiles still in the kiln are coming soon.</p>
 </section>
 
 <script src="team.js"></script>
@@ -117,7 +116,7 @@ const tile = (m, cls = '') => {
   b.style.cssText = `--tilt:${tilt(i)};--g1:${g1};--g2:${g2};--g3:${g3}`;
   b.innerHTML = `<span class="body"><span class="glaze"></span>
       ${m.hd ? `<img src="${photo(m)}" alt="" loading="lazy">` : `<span class="ini">${m.name[0]}</span>`}
-      <span class="label"><b>${m.name}</b><small><span>${m.role}</span><span>${m.hd ? gname : 'in the kiln'}</span></small></span></span>`;
+      <span class="label"><b>${m.name}</b><small><span>${m.role}</span><span>${m.hd ? gname : ''}</span></small></span></span>`;
   b.onclick = e => { e.stopPropagation(); open(i, b); };
   return b;
 };
