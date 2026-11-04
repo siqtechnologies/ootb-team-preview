@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Meet the Team, Option 3: Drying shelf | OOTB Pottery</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@500;800&family=Permanent+Marker&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<style>
+body{margin:0;background:#fff;color:#121212;font-family:"Space Mono",ui-monospace,monospace}
+
+/* ===== Section: plaster studio wall with wooden drying shelves ===== */
+.shelf-sec{--blue:#1E54A3;--wood:#c89a66;padding:60px 16px 70px;overflow:hidden;
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' seed='3'/%3E%3CfeColorMatrix values='0 0 0 0 .45  0 0 0 0 .38  0 0 0 0 .3  0 0 0 .09 0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)'/%3E%3C/svg%3E"),
+    radial-gradient(90% 60% at 50% 0,#fbf7f0,transparent 70%),
+    #efe8dc}
+.shelf-head{position:relative;max-width:1000px;margin:0 auto 26px;text-align:center}
+.shelf-head h2{margin:0;font-family:"League Spartan",sans-serif;font-weight:800;font-size:clamp(36px,7.5vw,70px);letter-spacing:-.02em;line-height:.95;color:#2a2118}
+.shelf-head h2 em{font-style:normal;color:var(--blue)}
+/* masking tape note stuck to the wall */
+.tape{display:inline-block;position:relative;font-family:"Permanent Marker",cursive;color:#2a2118;background:rgba(240,226,184,.92);
+  padding:6px 16px 5px;box-shadow:0 1px 2px rgba(0,0,0,.12);
+  clip-path:polygon(0 8%,3% 0,6% 9%,10% 1%,94% 0,97% 10%,100% 3%,99% 92%,96% 100%,92% 91%,6% 100%,2% 91%,0 100%)}
+.shelf-head .tape{margin-top:16px;font-size:15px;transform:rotate(-2deg)}
+.shelf-head p{margin:16px 0 0;font-size:14px;color:#5b5143}
+
+.shelves{max-width:1060px;margin:0 auto}
+.shelf{position:relative;margin-top:30px}
+.shelf .row{position:relative;z-index:1;display:flex;justify-content:space-around;align-items:flex-end;gap:8px;padding:0 18px;min-height:240px}
+/* plank: top surface + front edge, with grain */
+.shelf .plank{position:relative;height:34px;border-radius:3px;
+  background:
+    repeating-linear-gradient(90deg,rgba(90,55,25,.09) 0 2px,transparent 2px 23px,rgba(90,55,25,.06) 23px 24px,transparent 24px 61px),
+    linear-gradient(180deg,#d9b07c 0 30%,#b98450 31%,#a8733f 100%);
+  box-shadow:0 16px 22px -10px rgba(60,35,10,.45)}
+/* brackets */
+.shelf .plank::before,.shelf .plank::after{content:"";position:absolute;top:100%;width:16px;height:44px;background:linear-gradient(90deg,#3d3a36,#5a5650);clip-path:polygon(0 0,100% 0,100% 18%,30% 100%,0 100%)}
+.shelf .plank::before{left:9%}.shelf .plank::after{right:9%}
+.shelf .tags{position:absolute;left:18px;right:18px;top:7px;display:flex;justify-content:space-around;gap:8px;z-index:2;pointer-events:none}
+.shelf .tags .slot{flex:1 1 0;max-width:230px;text-align:center}.shelf .tags .slot.pet{flex:.62 1 0;max-width:150px}
+.shelf .tags .tape{font-size:15px;padding:3px 12px 2px;white-space:nowrap}
+.shelf .tags .tape small{font-family:"Space Mono",monospace;font-size:9px;letter-spacing:.06em;margin-left:6px;opacity:.75;text-transform:uppercase}
+
+.piece{all:unset;position:relative;cursor:pointer;display:flex;align-items:flex-end;justify-content:center;flex:1 1 0;max-width:230px;height:240px;margin-bottom:-6px;transition:transform .3s cubic-bezier(.3,1.5,.5,1)}
+.piece img{max-width:100%;max-height:100%;object-fit:contain;filter:drop-shadow(0 4px 3px rgba(40,25,10,.3));transition:filter .3s}
+.piece::after{content:"";position:absolute;bottom:2px;left:15%;right:15%;height:10px;border-radius:50%;background:rgba(60,35,10,.35);filter:blur(4px);z-index:-1;transition:opacity .3s,transform .3s}
+.piece:hover,.piece:focus-visible{transform:translateY(-12px)}
+.piece:hover::after,.piece:focus-visible::after{opacity:.5;transform:translateY(12px) scale(.8)}
+.piece:hover img,.piece:focus-visible img{filter:drop-shadow(0 16px 14px rgba(30,84,163,.35))}
+.piece:focus-visible{outline:3px solid var(--blue);outline-offset:4px;border-radius:8px}
+.piece.pet{flex:.62 1 0;height:150px;max-width:150px}
+.shelf .tags .tape.pet{font-size:12px}
+
+/* greenware pot, drawn in CSS, for anyone without a photo yet */
+.pot{position:relative;width:110px;height:150px}
+.pot i{position:absolute;display:block;background:radial-gradient(60% 50% at 35% 35%,#d3cbbf,#a69b8b 70%,#8c8171)}
+.pot .b{left:5px;right:5px;bottom:0;height:110px;border-radius:48% 48% 40% 40%/55% 55% 45% 45%}
+.pot .n{left:34px;right:34px;bottom:100px;height:38px;border-radius:6px}
+.pot .l{left:26px;right:26px;bottom:132px;height:12px;border-radius:50%;background:#9d9282}
+.pot b{position:absolute;left:0;right:0;top:66px;text-align:center;font:800 34px "League Spartan",sans-serif;color:rgba(255,255,255,.75)}
+
+.shelf-foot{text-align:center;margin:60px 0 0;font-size:12px;color:#6b5f4e}
+@media (max-width:760px){
+  .shelf{margin-top:18px}
+  .shelf .row{min-height:0;padding:0 10px;gap:6px}
+  .shelf .tags{left:10px;right:10px;gap:6px}
+  .piece{height:min(46vw,210px)}
+  .piece.pet{height:min(30vw,130px)}
+  .shelf .tags .tape{font-size:13px;padding:3px 9px 2px}
+  .shelf .tags .tape small{display:none}
+  .shelf .plank{height:26px}
+}
+</style>
+</head>
+<body>
+
+<section class="shelf-sec" aria-label="Meet the OOTB team">
+  <header class="shelf-head">
+    <h2>Meet the <em>OOTB</em> team</h2>
+    <span class="tape">Drying shelf! Please handle with care</span>
+    <p>Freshly made and left to dry. Pick one up to meet them.</p>
+  </header>
+  <div class="shelves" id="shelves"></div>
+  <p class="shelf-foot">The grey pots are still drying. Photos coming soon.</p>
+</section>
+
+<script src="team.js"></script>
+<script>
+versionNav('v3-shelf.html');
+const open = teamPopup({
+  photoBg: () => 'linear-gradient(180deg,transparent 78%,#b98450 78% 81%,#a8733f 81%),radial-gradient(90% 70% at 50% 20%,#fbf7f0,#e8dfd0)',
+});
+const tilt = () => (Math.random() * 6 - 3).toFixed(1) + 'deg';
+/* Each person keeps their pet beside them. Groups are packed onto shelves:
+   about 4 people wide on desktop, 2 on phones (a pet takes a bit over half a spot). */
+const groups = people().map(m => [m, ...petsOf(m)]);
+const width = g => g.reduce((w, m) => w + (m.pet ? .6 : 1), 0);
+function shelves(cap){
+  const rows = [[]];
+  groups.forEach(g => {
+    const row = rows[rows.length - 1];
+    if (row.length && width(row) + width(g) > cap) rows.push([...g]); else row.push(...g);
+  });
+  return rows;
+}
+const piece = m => `<button class="piece${m.pet ? ' pet' : ''}" type="button" data-i="${idx(m)}" aria-label="Meet ${m.name}, ${m.role}">${
+  photo(m) ? `<img src="${photo(m)}" alt="" loading="lazy">` : `<span class="pot" aria-hidden="true"><i class="b"></i><i class="n"></i><i class="l"></i><b>${m.name[0]}</b></span>`}</button>`;
+const label = m => `<span class="slot${m.pet ? ' pet' : ''}"><span class="tape${m.pet ? ' pet' : ''}" style="transform:rotate(${tilt()})">${m.name}<small>${m.pet ? '' : photo(m) ? m.role : 'still drying'}</small></span></span>`;
+const phone = matchMedia('(max-width:760px)');
+function render(){
+  document.getElementById('shelves').innerHTML = shelves(phone.matches ? 2.2 : 4).map(row => `<div class="shelf">
+    <div class="row">${row.map(piece).join('')}</div>
+    <div class="plank"></div>
+    <div class="tags" style="position:relative;top:-27px;margin-bottom:-20px">${row.map(label).join('')}</div>
+  </div>`).join('');
+  document.querySelectorAll('.piece').forEach(b => b.onclick = () => open(+b.dataset.i, b));
+}
+render();
+phone.addEventListener('change', render);
+
+</script>
+</body>
+</html>

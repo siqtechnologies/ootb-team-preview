@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Meet the Team, Option 2: Glaze test tiles | OOTB Pottery</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@500;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<style>
+body{margin:0;background:#fff;color:#121212;font-family:"Space Mono",ui-monospace,monospace}
+
+/* ===== Section: studio pegboard wall with glaze test tiles ===== */
+.tiles-sec{--blue:#1E54A3;padding:64px 16px 80px;
+  background:
+    radial-gradient(circle,#cfc6b4 0 2.2px,#e3dccd 2.6px 3.4px,transparent 3.8px) 0 0/30px 30px,
+    linear-gradient(180deg,#f4efe4,#ebe4d5);
+  overflow:hidden}
+.tiles-head{text-align:center;max-width:640px;margin:0 auto 46px}
+.tiles-head .kicker{display:inline-block;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#6b3e26;border:1.5px dashed #6b3e26;border-radius:4px;padding:4px 10px;transform:rotate(-1.5deg);background:#f7f2e8}
+.tiles-head h2{margin:14px 0 10px;font-family:"League Spartan",sans-serif;font-weight:800;font-size:clamp(34px,7vw,64px);line-height:.95;letter-spacing:-.02em;color:var(--blue)}
+.tiles-head p{margin:0;font-size:14px;color:#5b5346}
+
+.tiles{list-style:none;margin:0 auto;padding:0;max-width:1120px;display:flex;flex-wrap:wrap;justify-content:center;gap:54px 28px}
+.tiles li{position:relative;padding-top:34px;width:190px}
+/* nail + string */
+.tiles li::before{content:"";position:absolute;left:50%;top:0;width:12px;height:12px;margin-left:-6px;border-radius:50%;
+  background:radial-gradient(circle at 35% 35%,#fff 0 1px,#b9b2a3 2px,#6f685b 6px);box-shadow:0 2px 2px rgba(0,0,0,.25);z-index:2}
+.tile{all:unset;box-sizing:border-box;position:relative;display:block;width:100%;aspect-ratio:3/4.1;cursor:pointer;
+  transform-origin:50% -28px;transform:rotate(var(--tilt));transition:transform .35s cubic-bezier(.3,1.6,.5,1),filter .3s;
+  filter:drop-shadow(0 10px 10px rgba(60,45,25,.22))}
+.tile::before{content:"";position:absolute;left:50%;top:-28px;width:1.5px;height:44px;background:#7a6e5c;transform:translateX(-50%);z-index:1}
+.tile .body{position:absolute;inset:0;border-radius:12px 12px 16px 16px;overflow:hidden;
+  /* raw speckled stoneware */
+  background:
+    radial-gradient(circle,#8b6b4a 0 .8px,transparent 1.2px) 0 0/13px 11px,
+    radial-gradient(circle,#a5876a 0 .6px,transparent 1px) 6px 4px/17px 19px,
+    linear-gradient(#efe5d3,#e3d5bd);
+  -webkit-mask:radial-gradient(circle at 50% 16px,transparent 7px,#000 7.5px);mask:radial-gradient(circle at 50% 16px,transparent 7px,#000 7.5px)}
+/* the glaze: pools darker at the bottom, glossy highlight up top, drips over the raw clay */
+.tile .glaze{position:absolute;left:0;right:0;top:0;height:74%;
+  background:
+    radial-gradient(70% 40% at 30% 18%,rgba(255,255,255,.45),transparent 60%),
+    linear-gradient(180deg,var(--g1),var(--g2) 82%,var(--g3));
+  border-radius:0 0 6px 6px}
+.tile .glaze::after{content:"";position:absolute;left:0;right:0;top:calc(100% - 2px);height:26px;
+  background:
+    radial-gradient(7px 15px at 18% 0,var(--g3) 96%,transparent),
+    radial-gradient(5px 9px at 34% 0,var(--g3) 96%,transparent),
+    radial-gradient(9px 22px at 57% 0,var(--g3) 96%,transparent),
+    radial-gradient(5px 11px at 76% 0,var(--g3) 96%,transparent),
+    radial-gradient(6px 16px at 90% 0,var(--g3) 96%,transparent)}
+.tile img{position:absolute;left:8%;right:8%;top:13%;width:84%;height:62%;object-fit:contain;
+  filter:drop-shadow(0 6px 6px rgba(0,0,0,.28));transition:transform .35s}
+.tile .ini{position:absolute;left:0;right:0;top:20%;text-align:center;font:800 76px/1 "League Spartan",sans-serif;color:rgba(107,62,38,.28)}
+/* written in underglaze pencil on the raw clay */
+.tile .label{position:absolute;left:10px;right:10px;bottom:9px;color:#5a321e;line-height:1.15}
+.tile .label b{display:block;font:700 15px "Space Mono",monospace;letter-spacing:.06em;text-transform:uppercase}
+.tile .label small{display:flex;justify-content:space-between;font-size:10px;opacity:.8}
+.tile:hover,.tile:focus-visible{animation:swing .9s ease-out;filter:drop-shadow(0 18px 16px rgba(30,84,163,.28))}
+.tile:hover img,.tile:focus-visible img{transform:scale(1.06) translateY(-3px)}
+.tile:focus-visible .body{outline:3px solid var(--blue);outline-offset:3px}
+@keyframes swing{0%{transform:rotate(var(--tilt))}25%{transform:rotate(calc(var(--tilt) + 5deg))}50%{transform:rotate(calc(var(--tilt) - 3deg))}75%{transform:rotate(calc(var(--tilt) + 1.5deg))}100%{transform:rotate(var(--tilt))}}
+/* not glazed yet: bisque tile */
+.tile.bisque .glaze{display:none}
+/* pet tile, hanging off the bottom of its person's tile */
+.tiles li.has-pet{margin-bottom:150px}
+.tile.mini{position:absolute;right:-26px;top:calc(34px + 100% * 0);width:62%;margin-top:0}
+.tiles li.has-pet .tile.mini{top:auto;bottom:-162px}
+.tile.mini::before{top:-46px;height:58px}
+.tile.mini .label b{font-size:11px}.tile.mini .label small span:last-child{display:none}
+.tile.mini img{top:16%;height:58%}
+.tiles-foot{text-align:center;margin:56px 0 0;font-size:12px;color:#6b5f4e}
+@media (max-width:520px){.tiles{gap:44px 18px}.tiles li{width:calc(50% - 9px)}.tile.mini{right:8%;width:70%}.tiles li.has-pet .tile.mini{bottom:-150px}.tiles li.has-pet{margin-bottom:140px}.tile .label small span:last-child{display:none}.tiles-head{margin-bottom:30px}.tile .label b{font-size:13px}}
+</style>
+</head>
+<body>
+
+<section class="tiles-sec" aria-label="Meet the OOTB team">
+  <header class="tiles-head">
+    <span class="kicker">Test tiles · cone 6</span>
+    <h2>Meet the crew<br>behind the clay</h2>
+    <p>Every tile is one of us, each in our own glaze. Tap a tile to say hi.</p>
+  </header>
+  <ul class="tiles" id="tiles"></ul>
+  <p class="tiles-foot">Tiles still in the kiln are coming soon.</p>
+</section>
+
+<script src="team.js"></script>
+<script>
+versionNav('v2-tiles.html');
+/* glaze name, top colour, pooled colour, drip edge */
+const GLAZES = [
+  ["Cobalt", "#3f74c4", "#1E54A3", "#163f7d"],
+  ["Celadon", "#bfdccc", "#94bfa8", "#77a58c"],
+  ["Shino", "#f2cfa6", "#e3a874", "#c9824d"],
+  ["Chun white", "#f7f8fa", "#e3e8ee", "#c9d3df"],
+  ["Floating blue", "#7fa6cf", "#4b77a6", "#2f5684"],
+  ["Iron red", "#c9654a", "#a3432b", "#7c2d1b"],
+  ["Satin pink", "#f3cfcd", "#e2aaa8", "#c98987"],
+  ["Ash green", "#b8c38a", "#8d9b5c", "#6c7a40"],
+  ["Tenmoku", "#7b4a2e", "#4a2c1d", "#2c1a10"],
+  ["Honey", "#ecbf66", "#d69a3c", "#b07726"],
+  ["Oatmeal", "#efe6d4", "#d9ccb4", "#bcae92"],
+];
+const tilt = i => [-2.5, 1.8, -1, 2.6, -1.8, 1, -2.8, 2, -1.2, 2.4, -2][i % 11] + 'deg';
+const glazeOf = i => GLAZES[i % GLAZES.length];
+const open = teamPopup({
+  photoBg: (m, i) => m.hd ? `radial-gradient(70% 50% at 30% 20%,rgba(255,255,255,.45),transparent 60%),linear-gradient(180deg,${glazeOf(i)[1]},${glazeOf(i)[2]} 80%,${glazeOf(i)[3]})` : '#e3d5bd',
+});
+const ul = document.getElementById('tiles');
+const tile = (m, cls = '') => {
+  const i = idx(m), [gname, g1, g2, g3] = glazeOf(i);
+  const b = document.createElement('button');
+  b.className = `tile${m.hd ? '' : ' bisque'}${cls}`; b.type = 'button'; b.setAttribute('aria-label', `Meet ${m.name}, ${m.role}`);
+  b.style.cssText = `--tilt:${tilt(i)};--g1:${g1};--g2:${g2};--g3:${g3}`;
+  b.innerHTML = `<span class="body"><span class="glaze"></span>
+      ${m.hd ? `<img src="${photo(m)}" alt="" loading="lazy">` : `<span class="ini">${m.name[0]}</span>`}
+      <span class="label"><b>${m.name}</b><small><span>${m.role}</span><span>${m.hd ? gname : 'in the kiln'}</span></small></span></span>`;
+  b.onclick = e => { e.stopPropagation(); open(i, b); };
+  return b;
+};
+/* each person's tile, with their pet on a little tile hanging underneath */
+people().forEach(m => {
+  const li = document.createElement('li');
+  li.appendChild(tile(m));
+  petsOf(m).forEach(p => { li.classList.add('has-pet'); li.appendChild(tile(p, ' mini')); });
+  ul.appendChild(li);
+});
+</script>
+</body>
+</html>

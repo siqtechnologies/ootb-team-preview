@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Meet the Team, Option 5: Studio plan | OOTB Pottery</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@500;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<style>
+body{margin:0;background:#fff;color:#121212;font-family:"Space Mono",ui-monospace,monospace}
+
+/* ===== Section: blueprint of the studio, everyone at their own wheel station ===== */
+.plan-sec{--ink:rgba(255,255,255,.9);--line:rgba(255,255,255,.55);padding:56px 16px 64px;color:#fff;overflow:hidden;
+  background:
+    linear-gradient(rgba(255,255,255,.12) 1px,transparent 1px) 0 0/100px 100px,
+    linear-gradient(90deg,rgba(255,255,255,.12) 1px,transparent 1px) 0 0/100px 100px,
+    linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px) 0 0/20px 20px,
+    linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px) 0 0/20px 20px,
+    radial-gradient(90% 70% at 50% 30%,#2563b8,#163f7d)}
+.plan{position:relative;max-width:1080px;margin:0 auto;border:2px solid var(--ink);padding:34px 28px 28px}
+/* title block, like the corner of an architect's drawing */
+.plan-title{display:grid;grid-template-columns:1fr auto;gap:0;border:1.5px solid var(--ink);margin:0 0 34px}
+.plan-title h2{margin:0;padding:16px 18px;font:800 clamp(30px,6vw,58px)/.95 "League Spartan",sans-serif;letter-spacing:-.01em;border-right:1.5px solid var(--ink)}
+.plan-title dl{margin:0;display:grid;grid-template-columns:auto auto;font-size:11px;text-transform:uppercase;letter-spacing:.08em}
+.plan-title dt,.plan-title dd{margin:0;padding:6px 12px;border-bottom:1px solid var(--line)}
+.plan-title dt{opacity:.7;border-right:1px solid var(--line)}
+.plan-sub{margin:-18px 0 30px;font-size:13px;opacity:.85}
+.stations{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:30px}
+.station{position:relative;border:1.5px dashed var(--line);padding:30px 12px 14px;min-height:280px;display:flex;flex-direction:column}
+.station::before{content:attr(data-code);position:absolute;top:-10px;left:12px;background:#1d55a6;padding:0 6px;font-size:11px;letter-spacing:.1em}
+/* dimension line across the top */
+.station .dim{position:absolute;left:0;right:0;top:10px;height:1px;background:var(--line)}
+.station .dim::before,.station .dim::after{content:"";position:absolute;top:-4px;width:1px;height:9px;background:var(--line)}
+.station .dim::before{left:0}.station .dim::after{right:0}
+.station .spots{position:relative;flex:1;display:flex;align-items:flex-end;justify-content:center;gap:4px;min-height:200px}
+.spot{all:unset;position:relative;cursor:pointer;display:flex;align-items:flex-end;justify-content:center;height:200px;flex:1 1 auto;max-width:200px;transition:transform .3s}
+.spot.pet{height:118px;flex:0 1 92px}
+.spot img{max-width:100%;max-height:100%;object-fit:contain;
+  filter:drop-shadow(2px 0 0 #fff) drop-shadow(-2px 0 0 #fff) drop-shadow(0 2px 0 #fff) drop-shadow(0 -2px 0 #fff) drop-shadow(0 10px 10px rgba(0,0,0,.3))}
+.spot .ini{width:120px;height:120px;border:1.5px dashed var(--ink);border-radius:50%;display:grid;place-items:center;font:800 54px "League Spartan",sans-serif;margin-bottom:30px}
+/* crosshair when you point at someone */
+.spot::after{content:"";position:absolute;inset:-6px;border:1.5px solid #ffd666;opacity:0;transition:opacity .2s;
+  -webkit-mask:linear-gradient(#000 0 0) top left/14px 14px no-repeat,linear-gradient(#000 0 0) top right/14px 14px no-repeat,linear-gradient(#000 0 0) bottom left/14px 14px no-repeat,linear-gradient(#000 0 0) bottom right/14px 14px no-repeat;
+          mask:linear-gradient(#000 0 0) top left/14px 14px no-repeat,linear-gradient(#000 0 0) top right/14px 14px no-repeat,linear-gradient(#000 0 0) bottom left/14px 14px no-repeat,linear-gradient(#000 0 0) bottom right/14px 14px no-repeat}
+.spot:hover,.spot:focus-visible{transform:translateY(-6px)}
+.spot:hover::after,.spot:focus-visible::after{opacity:1}
+.station .key{margin-top:12px;border-top:1px solid var(--line);padding-top:8px;font-size:12px;line-height:1.5}
+.station .key b{font:800 20px "League Spartan",sans-serif;letter-spacing:.01em;text-transform:uppercase;display:block}
+.station .key span{opacity:.8;text-transform:uppercase;font-size:10px;letter-spacing:.1em}
+.station .key .with{display:block;margin-top:2px;color:#ffd666;font-size:11px;text-transform:none;letter-spacing:0;opacity:1}
+.plan-foot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-top:28px;font-size:11px;opacity:.75;text-transform:uppercase;letter-spacing:.08em}
+@media (max-width:600px){.plan{padding:24px 14px}.plan-title{grid-template-columns:1fr}.plan-title h2{border-right:0;border-bottom:1.5px solid var(--ink)}}
+</style>
+</head>
+<body>
+
+<section class="plan-sec" aria-label="Meet the OOTB team">
+  <div class="plan">
+    <div class="plan-title">
+      <h2>Meet the team<br>Studio plan</h2>
+      <dl><dt>Project</dt><dd>OOTB Pottery</dd><dt>Drawing</dt><dd>Team, top view</dd><dt>Scale</dt><dd>1 : clay</dd><dt>Sheet</dt><dd>T-01</dd></dl>
+    </div>
+    <p class="plan-sub">Everyone at their own wheel, studio pets included. Tap anyone to meet them.</p>
+    <div class="stations" id="stations"></div>
+    <div class="plan-foot"><span>Drawn by the OOTB team</span><span>Dashed circles: photo coming soon</span></div>
+  </div>
+</section>
+
+<script src="team.js"></script>
+<script>
+versionNav('v5-plan.html');
+const open = teamPopup({
+  photoBg: () => 'linear-gradient(rgba(255,255,255,.12) 1px,transparent 1px) 0 0/40px 40px,linear-gradient(90deg,rgba(255,255,255,.12) 1px,transparent 1px) 0 0/40px 40px,#1d55a6',
+});
+const spot = m => `<button class="spot${m.pet ? ' pet' : ''}" type="button" data-i="${idx(m)}" aria-label="Meet ${m.name}, ${m.role}">${
+  photo(m) ? `<img src="${photo(m)}" alt="" loading="lazy">` : `<span class="ini">${m.name[0]}</span>`}</button>`;
+document.getElementById('stations').innerHTML = people().map((m, n) => {
+  const pets = petsOf(m);
+  return `<div class="station" data-code="Station ${String.fromCharCode(65 + Math.floor(n / 4))}${n % 4 + 1}">
+    <i class="dim"></i>
+    <div class="spots">${spot(m)}${pets.map(spot).join('')}</div>
+    <div class="key"><b>${m.name}</b><span>${m.role}</span>${pets.length ? `<span class="with">+ ${pets.map(p => p.name).join(', ')}, studio pet</span>` : ''}</div>
+  </div>`;
+}).join('');
+document.querySelectorAll('.spot').forEach(b => b.onclick = () => open(+b.dataset.i, b));
+</script>
+</body>
+</html>

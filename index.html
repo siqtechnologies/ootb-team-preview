@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Meet the Team, Option 1: Poster | OOTB Pottery</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&family=League+Spartan:wght@800&family=Didact+Gothic&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#fff;color:#121212;font-family:"Space Mono",ui-monospace,monospace}
+
+/* ===== Section (becomes sections/ootb-team.liquid) ===== */
+.ootb-team{--blue:#1E54A3;padding:40px 16px 56px;background:#eef3fa}
+
+/* Blue linen tablecloth, drawn in CSS (wrinkles = SVG noise, weave = fine lines) */
+.board{
+  position:relative;width:min(100%,560px);aspect-ratio:385/625;margin:0 auto;border-radius:6px;overflow:hidden;
+  background-color:#c9dcf4;
+  background:#c9dcf4 url(img/bg.jpg) center/cover no-repeat;
+  box-shadow:0 24px 60px rgba(18,18,18,.18)
+}
+.board h2{
+  position:absolute;left:0;right:0;top:6.5%;margin:0;text-align:center;
+  font-family:"League Spartan",sans-serif;font-weight:800;font-size:clamp(22px,6.6vw,40px);letter-spacing:-.01em;
+  color:#79acec;-webkit-text-stroke:1.5px #3f78c9;text-shadow:0 2px 0 rgba(30,84,163,.25)
+}
+.nm{
+  position:absolute;transform:translate(-50%,-50%) rotate(var(--r));white-space:nowrap;pointer-events:none;
+  font-family:"Didact Gothic",sans-serif;font-weight:400;font-size:clamp(11px,3.1vw,17px);letter-spacing:.14em;color:#1a1a1a
+}
+.nm.small{font-size:clamp(7px,1.9vw,10px)}
+.cut{
+  all:unset;position:absolute;cursor:pointer;transition:transform .25s,filter .25s;
+  filter:drop-shadow(0 3px 4px rgba(18,18,18,.18))
+}
+.cut img{width:100%;height:100%;display:block;object-fit:contain;pointer-events:none}
+.cut:hover,.cut:focus-visible{transform:scale(1.07);z-index:3;filter:drop-shadow(0 12px 14px rgba(30,84,163,.35))}
+.cut .tip{position:absolute;left:50%;top:-4px;transform:translate(-50%,-100%);white-space:nowrap;pointer-events:none;
+  background:var(--blue);color:#fff;font:700 12px "Space Mono",monospace;padding:3px 10px;border-radius:20px;opacity:0;transition:opacity .2s}
+.cut:hover .tip,.cut:focus-visible .tip{opacity:1}
+.also{text-align:center;margin:22px 0 0;font-size:13px}
+.also button{font:inherit;font-weight:700;cursor:pointer;border:1.5px solid var(--blue);color:var(--blue);background:#fff;border-radius:20px;padding:4px 14px;margin:4px}
+.also button:hover{background:var(--blue);color:#fff}
+
+/* Popup: photo left, bio right */
+.tm-pop{position:fixed;inset:0;z-index:50;display:none;place-items:center;padding:16px;background:rgba(18,18,18,.55)}
+.tm-pop.open{display:grid;animation:fade .2s}
+.tm-card{position:relative;width:min(960px,100%);max-height:calc(100vh - 32px);overflow:auto;background:#fff;border-radius:22px;
+  display:grid;grid-template-columns:1fr 1fr;box-shadow:0 30px 80px rgba(0,0,0,.35);animation:rise .25s}
+.tm-card .photo{position:relative;min-height:440px;display:grid;place-items:center;overflow:hidden;background:#c9dcf4 url(img/bg.jpg) center/cover}
+.tm-card .photo img{position:absolute;inset:7%;width:86%;height:86%;object-fit:contain;transform:rotate(var(--up,0deg));filter:drop-shadow(0 8px 12px rgba(18,18,18,.2))}
+.tm-card .photo .ini{font-family:"Fredoka",sans-serif;font-size:110px;color:var(--blue)}
+.tm-card .body{padding:36px 34px;display:flex;flex-direction:column}
+.tm-card .role{font-size:12px;text-transform:uppercase;letter-spacing:.12em;color:var(--blue);margin:0 0 4px}
+.tm-card h3{margin:0 0 14px;font-family:"Fredoka",sans-serif;font-size:40px}
+.tm-card .tags{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 18px;padding:0;list-style:none}
+.tm-card .tags li{font-size:12px;border:1.5px solid var(--blue);color:var(--blue);border-radius:20px;padding:3px 10px}
+.tm-card .bio{margin:0;font-size:15px;line-height:1.7}
+.tm-card .nav{margin-top:auto;padding-top:24px;display:flex;justify-content:space-between;gap:10px}
+.tm-card .nav button,.tm-card .x{font:inherit;cursor:pointer;border:1.5px solid var(--blue);color:var(--blue);background:#fff;border-radius:30px;padding:8px 16px}
+.tm-card .nav button:hover{background:var(--blue);color:#fff}
+.tm-card .x{position:absolute;top:12px;right:12px;width:40px;height:40px;padding:0;font-size:20px;line-height:1;z-index:1}
+@keyframes fade{from{opacity:0}}
+@keyframes rise{from{transform:translateY(20px);opacity:0}}
+@media (max-width:760px){
+  .tm-card{grid-template-columns:1fr}
+  .tm-card .photo{aspect-ratio:auto;height:300px}
+  .tm-card .body{padding:24px 20px}
+  .tm-card h3{font-size:30px}
+}
+</style>
+</head>
+<body>
+
+<nav style="display:flex;flex-wrap:wrap;gap:6px 8px;align-items:center;justify-content:center;padding:10px 16px;border-bottom:1px dashed #1E54A3;font:12px 'Space Mono',monospace;color:#1E54A3">
+  <b style="margin-right:6px">Team section options:</b>
+  <a href="index.html" style="color:#fff;background:#1E54A3;border:1.5px solid #1E54A3;border-radius:20px;padding:3px 12px;text-decoration:none">1. Poster</a>
+  <a href="v2-tiles.html" style="color:#1E54A3;border:1.5px solid #1E54A3;border-radius:20px;padding:3px 12px;text-decoration:none">2. Glaze test tiles</a>
+  <a href="v3-shelf.html" style="color:#1E54A3;border:1.5px solid #1E54A3;border-radius:20px;padding:3px 12px;text-decoration:none">3. Drying shelf</a>
+  <a href="v4-cards.html" style="color:#1E54A3;border:1.5px solid #1E54A3;border-radius:20px;padding:3px 12px;text-decoration:none">4. Crew cards</a>
+  <a href="v5-plan.html" style="color:#1E54A3;border:1.5px solid #1E54A3;border-radius:20px;padding:3px 12px;text-decoration:none">5. Studio plan</a>
+  <a href="v6-polaroids.html" style="color:#1E54A3;border:1.5px solid #1E54A3;border-radius:20px;padding:3px 12px;text-decoration:none">6. Polaroids</a>
+  <a href="v7-covers.html" style="color:#1E54A3;border:1.5px solid #1E54A3;border-radius:20px;padding:3px 12px;text-decoration:none">7. Magazine covers</a>
+</nav>
+
+<section class="ootb-team" aria-label="Meet the OOTB team">
+  <div class="board" id="board"><h2>MEET OOTB TEAM</h2></div>
+  <p class="also" id="also">Also on the team: </p>
+</section>
+
+<div class="tm-pop" id="pop" role="dialog" aria-modal="true" aria-labelledby="p-name">
+  <article class="tm-card">
+    <button class="x" id="p-x" aria-label="Close">×</button>
+    <div class="photo" id="p-photo"></div>
+    <div class="body">
+      <p class="role" id="p-role"></p>
+      <h3 id="p-name"></h3>
+      <ul class="tags" id="p-tags"></ul>
+      <p class="bio" id="p-bio"></p>
+      <div class="nav"><button id="p-prev">← Previous</button><button id="p-next">Next →</button></div>
+    </div>
+  </article>
+</div>
+
+<script>
+/* Layout is measured on Joanna's 385 x 625 poster.
+   box = where the cut-out sits, label = [x, y, rotation] of the name, up = turn that makes the person upright in the popup.
+   In Shopify each member becomes a section block (photo, cut-out, name, role, specialties, bio). */
+const TEAM = [
+  {name:"Joanna", role:"Co-founder", box:[19,204,170,266], label:[24,174,-90], up:90, tags:["Big picture ideas","Brand building","New experiences"],
+   bio:"Meet Joanna! The big picture thinker and idea generator behind OOTB. With an entrepreneurial spirit and a love for turning ideas into reality, she's always dreaming up new projects and finding ways to bring people together. From building the OOTB brand to creating new experiences, she loves making things happen (and occasionally having way too many ideas at once!). For her, OOTB is more than a pottery studio: it's a place for creativity, connection, and a little bit of chaos."},
+  {name:"Naicha", role:"Studio friend", pet:true, box:[97,160,160,206], label:[100,152,-90], tags:[], bio:"Bio coming soon."},
+  {name:"Momo", role:"Studio friend", pet:true, box:[192,131,301,194], label:[300,145,90], up:-90, tags:[], bio:"Bio coming soon."},
+  {name:"Mia", role:"Co-founder", box:[196,197,352,294], label:[336,182,90], up:-90, tags:[], bio:"Bio coming soon."},
+  {name:"Jonas", role:"OOTB team", box:[41,280,171,420], label:[45,305,-90], tags:["Plant parent","Side quests","Getting your hands dirty"],
+   bio:"This is Jonas, a part time plant parent, full time creative with too many side quests. Currently accepting clay as another personality trait. If I'm not making something, I'm probably thinking about making something. Here to help you get your hands dirty. No, your pottery does not have to look like the Pinterest reference."},
+  {name:"Janice", role:"OOTB team", box:[193,313,339,392], label:[341,327,90], up:-90, tags:["Whimsical ceramics","Everyday inspiration","2 cats and a puppy"],
+   bio:"Meet Janice, a clay enthusiast with too many hobbies and not enough hours. She makes whimsical ceramics inspired by everyday things and joined OOTB to help others fall in love with clay, wobbles and all. She is also a proud mom to 2 cats and one puppy. If she's not at the studio, she's probably thinking about being at the studio."},
+  {name:"Remy", role:"Chief greeter", pet:true, box:[200,387,268,435], label:[276,412,90], tags:["Greeting everyone","Floor supervisor","Paid in treats"],
+   bio:"Meet Remy, OOTB's cutest employee. He's just a puppy but already has a full time job greeting everyone who walks in. You can find him at the studio on occasional weekdays, supervising from the floor and accepting treats as payment."},
+  {name:"Nadine", role:"OOTB team", box:[23,454,169,512], label:[28,438,-90], up:90, tags:[], bio:"Bio coming soon."},
+  {name:"Bonnie", role:"Instructor", box:[189,446,340,513], label:[350,440,90], up:-90, tags:["Multidisciplinary artist","3 years in ceramics","Nature and movies"],
+   bio:"I'm a multidisciplinary artist and I am one of the instructors at OOTB. I have been working with ceramics for about three years now. Outside of ceramics, I enjoy being outside in nature and watching movies. My teaching philosophy is that failure is a part of great artmaking!"},
+  {name:"Anie", role:"Instructor", tags:["Organic shaped vessels","Candle lit dinners","Patience and intention"],
+   bio:"Meet Anie! An instructor at OOTB who loves to make organic shaped vessels. Outside of making pots, she loves to bike around the city and host candle lit dinner parties with friends. She joined OOTB to combine her love of pottery and hosting, to build a community and teach skills of patience, gratitude, and intentionality."},
+  {name:"Emma", role:"OOTB team", tags:[], bio:"Bio coming soon."},
+];
+
+const board = document.getElementById('board'), also = document.getElementById('also'), pop = document.getElementById('pop');
+const X = v => v / 3.85 + '%', Y = v => v / 6.25 + '%';
+const HD = ['naicha','joanna','momo','mia','jonas','janice','remy','nadine','bonnie'];   // HD cut-outs from Joanna, Nov 4
+const hd = m => HD.includes(m.name.toLowerCase());
+const img = m => hd(m) ? `img/board/${m.name.toLowerCase()}.png` : `img/cut/${m.name.toLowerCase()}.png`;
+const big = m => hd(m) ? `img/hd/${m.name.toLowerCase()}.png` : img(m);
+const els = TEAM.map((m, i) => {
+  const b = document.createElement('button');
+  b.type = 'button'; b.setAttribute('aria-label', 'Meet ' + m.name); b.onclick = () => open(i);
+  if (m.box) {
+    const [x1, y1, x2, y2] = m.box;
+    b.className = 'cut';
+    Object.assign(b.style, {left: X(x1), top: Y(y1), width: X(x2 - x1), height: Y(y2 - y1)});
+    b.innerHTML = `<img src="${img(m)}" alt=""><span class="tip">Meet ${m.name}</span>`;
+    board.appendChild(b);
+    const n = document.createElement('span');
+    n.className = 'nm' + (m.pet ? ' small' : '');
+    n.textContent = m.name === 'Remy' ? 'REMY' : m.name;
+    Object.assign(n.style, {left: X(m.label[0]), top: Y(m.label[1])});
+    n.style.setProperty('--r', m.label[2] + 'deg');
+    board.appendChild(n);
+  } else {
+    b.textContent = m.name;   // not on the poster yet
+    also.appendChild(b);
+  }
+  return b;
+});
+if (!also.querySelector('button')) also.remove();
+
+let cur = 0, opener = null;
+function fill(i){
+  const m = TEAM[cur = (i + TEAM.length) % TEAM.length], ph = document.getElementById('p-photo');
+  ph.innerHTML = m.box ? `<img src="${big(m)}" alt="${m.name} at OOTB Pottery">` : `<span class="ini">${m.name[0]}</span>`;
+  ph.style.setProperty('--up', (hd(m) ? 0 : m.up || 0) + 'deg');
+  document.getElementById('p-role').textContent = m.role;
+  document.getElementById('p-name').textContent = m.name;
+  document.getElementById('p-tags').innerHTML = m.tags.map(t => `<li>${t}</li>`).join('');
+  document.getElementById('p-bio').textContent = m.bio;
+}
+function open(i){ opener = els[i]; fill(i); pop.classList.add('open'); document.getElementById('p-x').focus(); }
+function close(){ pop.classList.remove('open'); opener && opener.focus(); }
+document.getElementById('p-x').onclick = close;
+document.getElementById('p-prev').onclick = () => fill(cur - 1);
+document.getElementById('p-next').onclick = () => fill(cur + 1);
+pop.addEventListener('click', e => { if (e.target === pop) close(); });
+if (/^#open=\d+$/.test(location.hash)) open(+location.hash.slice(6));   // deep link, e.g. #open=2
+addEventListener('keydown', e => {
+  if (!pop.classList.contains('open')) return;
+  if (e.key === 'Escape') close();
+  if (e.key === 'ArrowRight') fill(cur + 1);
+  if (e.key === 'ArrowLeft') fill(cur - 1);
+});
+</script>
+</body>
+</html>
