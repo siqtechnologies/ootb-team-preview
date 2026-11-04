@@ -28,7 +28,7 @@ body{margin:0;background:#fff;color:#121212;font-family:"Roboto Mono",ui-monospa
 .line li{position:relative;flex:0 1 220px;margin-top:var(--drop,0px)}
 .pol{all:unset;box-sizing:border-box;position:relative;display:block;width:100%;cursor:pointer;background:#fff;padding:10px 10px 0;
   box-shadow:0 1px 1px rgba(0,0,0,.08),0 12px 24px rgba(60,40,20,.18);transform:rotate(var(--tilt));transform-origin:50% -8px;transition:transform .35s cubic-bezier(.3,1.5,.5,1),box-shadow .3s}
-.pol .pic{display:block;aspect-ratio:1;background:#c9dcf4 url(img/bg.jpg) center/cover;overflow:hidden;position:relative}
+.pol .pic{display:block;aspect-ratio:1;background:#c9dcf4 url(img/bg.webp) center/cover;overflow:hidden;position:relative}
 .pol .pic img{position:absolute;inset:5%;width:90%;height:90%;object-fit:contain;filter:drop-shadow(0 5px 6px rgba(0,0,0,.22))}
 .pol .pic .ini{position:absolute;inset:0;display:grid;place-items:center;font:700 92px "Caveat",cursive;color:rgba(30,84,163,.45)}
 .pol .cap{display:block;padding:8px 2px 12px;text-align:center;font:700 26px/1 "Caveat",cursive;color:#1d1a16}
@@ -73,11 +73,11 @@ body{margin:0;background:#fff;color:#121212;font-family:"Roboto Mono",ui-monospa
 <script src="team.js"></script>
 <script>
 versionNav('v6-polaroids.html');
-const open = teamPopup({ photoBg: () => '#c9dcf4 url(img/bg.jpg) center/cover' });
+const open = teamPopup({ photoBg: () => '#c9dcf4 url(img/bg.webp) center/cover' });
 const TILTS = [-4, 3, -2, 5, -3, 2, -5, 4];
 const pol = (m, mini) => `<button class="pol${mini ? ' mini' : ''}" type="button" data-i="${idx(m)}" aria-label="Meet ${m.name}, ${m.role}"
   style="${mini ? '' : `--tilt:${TILTS[idx(m) % TILTS.length]}deg`}">${mini ? '<i class="peg2"></i>' : ''}
-  <span class="pic">${photo(m) ? `<img src="${photo(m)}" alt="" loading="lazy">` : `<span class="ini">${m.name[0]}</span>`}</span>
+  <span class="pic">${photo(m) ? `<img src="${thumb(m)}" alt="" loading="lazy">` : `<span class="ini">${m.name[0]}</span>`}</span>
   <span class="cap">${m.name}<small>${m.role}</small></span></button>`;
 /* 4 people per string; on phones each string scrolls sideways */
 const ppl = people(), rows = [];

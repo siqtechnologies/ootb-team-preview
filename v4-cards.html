@@ -14,7 +14,7 @@ body{margin:0;background:#fff;color:#121212;font-family:"Roboto Mono",ui-monospa
 /* ===== Section: cobalt table, the team dealt as a fanned hand of collectible cards ===== */
 .cards-sec{--blue:#1E54A3;position:relative;overflow:hidden;padding:64px 16px 40px;color:#fff;
   background:radial-gradient(80% 70% at 50% 100%,#2c66bd,transparent 70%),#163f7d}
-.cards-sec::before{content:"";position:absolute;inset:0;background:url(img/bg.jpg) center/cover;mix-blend-mode:soft-light;opacity:.55;pointer-events:none}
+.cards-sec::before{content:"";position:absolute;inset:0;background:url(img/bg.webp) center/cover;mix-blend-mode:soft-light;opacity:.55;pointer-events:none}
 .cards-head{position:relative;text-align:center;max-width:680px;margin:0 auto}
 .cards-head .kicker{font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:#bcd3f3}
 .cards-head h2{margin:10px 0 8px;font:800 clamp(38px,8vw,76px)/.92 "Space Mono",monospace;letter-spacing:-.02em}
@@ -31,7 +31,7 @@ body{margin:0;background:#fff;color:#121212;font-family:"Roboto Mono",ui-monospa
 .face{position:relative;display:block;width:100%;height:100%;border-radius:16px;overflow:hidden;padding:9px;box-sizing:border-box;
   background:linear-gradient(145deg,var(--c1),var(--c2));box-shadow:0 18px 30px rgba(0,0,0,.35),inset 0 0 0 1px rgba(255,255,255,.35);
   transform:perspective(700px) rotateX(var(--ry,0deg)) rotateY(var(--rx,0deg));transition:transform .15s}
-.face .win{position:absolute;inset:9px 9px 52px;border-radius:10px;background:#c9dcf4 url(img/bg.jpg) center/cover;overflow:hidden}
+.face .win{position:absolute;inset:9px 9px 52px;border-radius:10px;background:#c9dcf4 url(img/bg.webp) center/cover;overflow:hidden}
 .face .win img{position:absolute;inset:6% 4% 0;width:92%;height:94%;object-fit:contain;filter:drop-shadow(0 6px 6px rgba(0,0,0,.25))}
 .face .win .ini{position:absolute;inset:0;display:grid;place-items:center;font:800 90px "Space Mono",monospace;color:var(--c2);opacity:.5}
 .face .no{position:absolute;top:16px;left:16px;z-index:1;font:700 10px "Space Mono",monospace;background:#fff;color:#163f7d;border-radius:20px;padding:2px 8px}
@@ -67,6 +67,8 @@ body{margin:0;background:#fff;color:#121212;font-family:"Roboto Mono",ui-monospa
 
 @media (max-width:1180px) and (min-width:761px){.hand{transform:scale(.78);transform-origin:50% 0;height:440px}}
 @media (max-width:760px){
+  .cards-sec::before{display:none}
+  .face::after{display:none}
   .hand{height:auto;display:flex;gap:16px;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;padding:40px 24px 30px;margin:0 -16px;scrollbar-width:none}
   .hand::-webkit-scrollbar{display:none}
   .card{position:relative;left:auto;bottom:auto;margin:0;flex:0 0 190px;transform:none;scroll-snap-align:center}
@@ -108,10 +110,10 @@ versionNav('v4-cards.html');
 /* frame colours, one glaze per card */
 const FRAMES = [["#ffd666","#e39b2d"],["#f3a6b8","#d0607e"],["#8fd3b6","#3f9a7a"],["#ffb38a","#e0603a"],["#9fc3ff","#3f74c4"],
   ["#c9b3ff","#7b5cd6"],["#ffe08a","#c9a227"],["#a7e3f0","#3fa0bd"],["#d9b48c","#8a5a33"],["#3a3a3a","#121212"],["#c6c6c6","#7a7a7a"]];
-const face = (m, i) => {
+const face = (m, i, big) => {
   const [c1, c2] = FRAMES[i % FRAMES.length];
   return `<span class="face" style="--c1:${c1};--c2:${c2}">
-    <span class="win">${photo(m) ? `<img src="${photo(m)}" alt="" loading="lazy">` : `<span class="ini">${m.name[0]}</span>`}</span>
+    <span class="win">${photo(m) ? `<img src="${big ? photo(m) : thumb(m)}" alt="" loading="lazy">` : `<span class="ini">${m.name[0]}</span>`}</span>
     <span class="nm"><b>${m.name}</b><small>${m.role}</small></span></span>`;
 };
 /* tilt + shine follow the pointer */
@@ -141,7 +143,7 @@ shine(front);
 let cur = 0, opener = null;
 function fill(i){
   const m = TEAM[cur = (i + n) % n];
-  front.innerHTML = face(m, cur);
+  front.innerHTML = face(m, cur, true);
   $('d-role').textContent = m.role; $('d-name').textContent = m.name;
   $('d-tags').innerHTML = m.tags.map(t => `<li>${t}</li>`).join('');
   $('d-bio').textContent = m.bio;

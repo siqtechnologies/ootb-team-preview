@@ -23,7 +23,8 @@ const TEAM = [
 const people = () => TEAM.filter(m => !m.pet);
 const petsOf = m => TEAM.filter(p => p.with === m.name);
 const idx = m => TEAM.indexOf(m);
-const photo = m => m.hd ? `img/hd/${m.name.toLowerCase()}.png` : null;
+const photo = m => m.hd ? `img/md/${m.name.toLowerCase()}.webp` : null;   // popup size
+const thumb = m => m.hd ? `img/sm/${m.name.toLowerCase()}.webp` : null;  // grid size
 
 const VERSIONS = [
   ["index.html", "Poster"],

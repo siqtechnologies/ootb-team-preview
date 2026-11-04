@@ -106,7 +106,7 @@ function shelves(cap){
   return rows;
 }
 const piece = m => `<button class="piece${m.pet ? ' pet' : ''}" type="button" data-i="${idx(m)}" aria-label="Meet ${m.name}, ${m.role}">${
-  photo(m) ? `<img src="${photo(m)}" alt="" loading="lazy">` : `<span class="pot" aria-hidden="true"><i class="b"></i><i class="n"></i><i class="l"></i><b>${m.name[0]}</b></span>`}</button>`;
+  photo(m) ? `<img src="${thumb(m)}" alt="" loading="lazy">` : `<span class="pot" aria-hidden="true"><i class="b"></i><i class="n"></i><i class="l"></i><b>${m.name[0]}</b></span>`}</button>`;
 const label = m => `<span class="slot${m.pet ? ' pet' : ''}"><span class="tape${m.pet ? ' pet' : ''}" style="transform:rotate(${tilt()})">${m.name}<small>${m.pet ? '' : m.role}</small></span></span>`;
 const phone = matchMedia('(max-width:760px)');
 function render(){

@@ -79,12 +79,12 @@ document.getElementById('stand').innerHTML = people().map((m, n) => {
   return `<div class="cell">
     <button class="cover" type="button" data-i="${idx(m)}" aria-label="Meet ${m.name}, ${m.role}" style="--bg:${bg};--fg:${fg};--mast:${mast}">
       <span class="mast" aria-hidden="true">OOTB</span>
-      <span class="star">${photo(m) ? `<img src="${photo(m)}" alt="" loading="lazy">` : `<span class="ini">${m.name[0]}</span>`}</span>
+      <span class="star">${photo(m) ? `<img src="${thumb(m)}" alt="" loading="lazy">` : `<span class="ini">${m.name[0]}</span>`}</span>
       <ul class="lines">${lines.map(l => `<li>${l}</li>`).join('')}</ul>
       <span class="name"><b>${m.name}</b></span>
     </button>
     ${pets.map(p => `<button class="guest" type="button" data-i="${idx(p)}" aria-label="Meet ${p.name}, ${p.role}">
-      <img src="${photo(p)}" alt="" loading="lazy"><span>${p.name}</span></button>`).join('')}
+      <img src="${thumb(p)}" alt="" loading="lazy"><span>${p.name}</span></button>`).join('')}
   </div>`;
 }).join('');
 document.querySelectorAll('.cover,.guest').forEach(b => b.onclick = () => open(+b.dataset.i, b));

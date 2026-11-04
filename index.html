@@ -17,7 +17,7 @@ body{margin:0;background:#fff;color:#121212;font-family:"Space Mono",ui-monospac
 .board{
   position:relative;width:min(100%,560px);aspect-ratio:385/625;margin:0 auto;border-radius:6px;overflow:hidden;
   background-color:#c9dcf4;
-  background:#c9dcf4 url(img/bg.jpg) center/cover no-repeat;
+  background:#c9dcf4 url(img/bg.webp) center/cover no-repeat;
   box-shadow:0 24px 60px rgba(18,18,18,.18)
 }
 .board h2{
@@ -48,7 +48,7 @@ body{margin:0;background:#fff;color:#121212;font-family:"Space Mono",ui-monospac
 .tm-pop.open{display:grid;animation:fade .2s}
 .tm-card{position:relative;width:min(960px,100%);max-height:calc(100vh - 32px);overflow:auto;background:#fff;border-radius:22px;
   display:grid;grid-template-columns:1fr 1fr;box-shadow:0 30px 80px rgba(0,0,0,.35);animation:rise .25s}
-.tm-card .photo{position:relative;min-height:440px;display:grid;place-items:center;overflow:hidden;background:#c9dcf4 url(img/bg.jpg) center/cover}
+.tm-card .photo{position:relative;min-height:440px;display:grid;place-items:center;overflow:hidden;background:#c9dcf4 url(img/bg.webp) center/cover}
 .tm-card .photo img{position:absolute;inset:7%;width:86%;height:86%;object-fit:contain;transform:rotate(var(--up,0deg));filter:drop-shadow(0 8px 12px rgba(18,18,18,.2))}
 .tm-card .photo .ini{font-family:"Fredoka",sans-serif;font-size:110px;color:var(--blue)}
 .tm-card .body{padding:36px 34px;display:flex;flex-direction:column}
@@ -131,8 +131,8 @@ const board = document.getElementById('board'), also = document.getElementById('
 const X = v => v / 3.85 + '%', Y = v => v / 6.25 + '%';
 const HD = ['naicha','joanna','momo','mia','jonas','janice','remy','nadine','bonnie'];   // HD cut-outs from Joanna, Nov 4
 const hd = m => HD.includes(m.name.toLowerCase());
-const img = m => hd(m) ? `img/board/${m.name.toLowerCase()}.png` : `img/cut/${m.name.toLowerCase()}.png`;
-const big = m => hd(m) ? `img/hd/${m.name.toLowerCase()}.png` : img(m);
+const img = m => hd(m) ? `img/board/${m.name.toLowerCase()}.webp` : `img/cut/${m.name.toLowerCase()}.png`;
+const big = m => hd(m) ? `img/md/${m.name.toLowerCase()}.webp` : img(m);
 const els = TEAM.map((m, i) => {
   const b = document.createElement('button');
   b.type = 'button'; b.setAttribute('aria-label', 'Meet ' + m.name); b.onclick = () => open(i);

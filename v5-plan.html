@@ -51,7 +51,7 @@ body{margin:0;background:#fff;color:#121212;font-family:"Roboto Mono",ui-monospa
 .station .key span{opacity:.8;text-transform:uppercase;font-size:10px;letter-spacing:.1em}
 .station .key .with{display:block;margin-top:2px;color:#ffd666;font-size:11px;text-transform:none;letter-spacing:0;opacity:1}
 .plan-foot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-top:28px;font-size:11px;opacity:.75;text-transform:uppercase;letter-spacing:.08em}
-@media (max-width:600px){.plan{padding:24px 14px}.plan-title{grid-template-columns:1fr}.plan-title h2{border-right:0;border-bottom:1.5px solid var(--ink)}}
+@media (max-width:600px){.spot img{filter:drop-shadow(0 0 1.5px #fff) drop-shadow(0 6px 8px rgba(0,0,0,.3))}.plan{padding:24px 14px}.plan-title{grid-template-columns:1fr}.plan-title h2{border-right:0;border-bottom:1.5px solid var(--ink)}}
 .plan-head{margin:0 0 30px}.plan-head h2{margin:0 0 8px;font-family:"Space Mono",monospace;font-weight:700;letter-spacing:-.03em;text-transform:none;font-size:clamp(32px,6vw,52px)}.plan-head p{margin:0;font-size:14px;opacity:.85}
 </style>
 </head>
@@ -72,7 +72,7 @@ const open = teamPopup({
   photoBg: () => 'linear-gradient(rgba(255,255,255,.12) 1px,transparent 1px) 0 0/40px 40px,linear-gradient(90deg,rgba(255,255,255,.12) 1px,transparent 1px) 0 0/40px 40px,#1d55a6',
 });
 const spot = m => `<button class="spot${m.pet ? ' pet' : ''}" type="button" data-i="${idx(m)}" aria-label="Meet ${m.name}, ${m.role}">${
-  photo(m) ? `<img src="${photo(m)}" alt="" loading="lazy">` : `<span class="ini">${m.name[0]}</span>`}</button>`;
+  photo(m) ? `<img src="${thumb(m)}" alt="" loading="lazy">` : `<span class="ini">${m.name[0]}</span>`}</button>`;
 document.getElementById('stations').innerHTML = people().map((m, n) => {
   const pets = petsOf(m);
   return `<div class="station">

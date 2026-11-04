@@ -115,7 +115,7 @@ const tile = (m, cls = '') => {
   b.className = `tile${m.hd ? '' : ' bisque'}${cls}`; b.type = 'button'; b.setAttribute('aria-label', `Meet ${m.name}, ${m.role}`);
   b.style.cssText = `--tilt:${tilt(i)};--g1:${g1};--g2:${g2};--g3:${g3}`;
   b.innerHTML = `<span class="body"><span class="glaze"></span>
-      ${m.hd ? `<img src="${photo(m)}" alt="" loading="lazy">` : `<span class="ini">${m.name[0]}</span>`}
+      ${m.hd ? `<img src="${thumb(m)}" alt="" loading="lazy">` : `<span class="ini">${m.name[0]}</span>`}
       <span class="label"><b>${m.name}</b><small><span>${m.role}</span><span>${m.hd ? gname : ''}</span></small></span></span>`;
   b.onclick = e => { e.stopPropagation(); open(i, b); };
   return b;
