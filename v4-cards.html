@@ -63,6 +63,10 @@ body{margin:0;background:#fff;color:#121212;font-family:"Roboto Mono",ui-monospa
 .back .x{position:absolute;top:14px;right:14px;width:40px;height:40px;padding:0;font-size:20px;line-height:1;z-index:1}
 @keyframes dealIn{from{transform:translateY(60px) rotate(-8deg);opacity:0}}
 @keyframes flipIn{from{transform:perspective(900px) rotateY(-90deg);opacity:0}}
+.face.openface{background:linear-gradient(145deg,#2c66bd,#1b4c98);box-shadow:0 18px 30px rgba(0,0,0,.35);border:2px dashed rgba(255,255,255,.75)}
+.face.openface .win{background:rgba(255,255,255,.08);display:grid;place-items:center}
+.face.openface .win .plus{font:400 84px/1 "Space Mono",monospace;color:#ffd666}
+.face.openface .nm b{color:#ffd666;font-size:17px}
 .cards-foot{position:relative;text-align:center;margin:10px 0 0;font-size:12px;color:#bcd3f3}
 
 @media (max-width:1180px) and (min-width:761px){.hand{transform:scale(.78);transform-origin:50% 0;height:440px}}
@@ -85,7 +89,7 @@ body{margin:0;background:#fff;color:#121212;font-family:"Roboto Mono",ui-monospa
 <section class="cards-sec" aria-label="Meet the OOTB team">
   <header class="cards-head">
     <h2>Meet the team</h2>
-    <p>Click on anyone to get to know them.</p>
+    <p>Click on anyone to get to know them. The dashed cards are open seats.</p>
   </header>
   <div class="hand" id="hand"></div>
 </section>
@@ -126,14 +130,26 @@ function shine(el){
   el.addEventListener('pointerleave', () => { const f = el.querySelector('.face'); f.style.setProperty('--rx', '0deg'); f.style.setProperty('--ry', '0deg'); });
 }
 
-const hand = document.getElementById('hand'), n = TEAM.length, spread = 76;
+const hand = document.getElementById('hand'), n = TEAM.length, total = n + OPEN_SEATS.length, spread = 84;
+const joinSeat = joinDialog();
 TEAM.forEach((m, i) => {
   const b = document.createElement('button');
   b.className = 'card'; b.type = 'button'; b.setAttribute('aria-label', `Meet ${m.name}, ${m.role}`);
-  b.style.setProperty('--a', (-spread / 2 + spread * i / (n - 1)).toFixed(1) + 'deg');
+  b.style.setProperty('--a', (-spread / 2 + spread * i / (total - 1)).toFixed(1) + 'deg');
   b.style.setProperty('--z', i + 1);
   b.innerHTML = face(m, i);
   b.onclick = () => open(i, b);
+  shine(b);
+  hand.appendChild(b);
+});
+
+OPEN_SEATS.forEach((seat, k) => {
+  const i = n + k, b = document.createElement('button');
+  b.className = 'card'; b.type = 'button'; b.setAttribute('aria-label', `Open seat: ${seat.role}`);
+  b.style.setProperty('--a', (-spread / 2 + spread * i / (total - 1)).toFixed(1) + 'deg');
+  b.style.setProperty('--z', i + 1);
+  b.innerHTML = `<span class="face openface"><span class="win"><span class="plus">+</span></span><span class="nm"><b>${seat.role}</b><small>${seat.where}</small></span></span>`;
+  b.onclick = () => joinSeat(k, b);
   shine(b);
   hand.appendChild(b);
 });

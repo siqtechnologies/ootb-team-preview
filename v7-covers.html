@@ -54,6 +54,11 @@ body{margin:0;background:#fff;color:#121212;font-family:"Roboto Mono",ui-monospa
 }
 .mag-head h2{font-family:"Space Mono",monospace;font-weight:700;letter-spacing:-.03em;text-transform:none;font-size:clamp(32px,6vw,52px)}
 .cover .lines li:first-child{font-family:"Roboto Mono",monospace}
+.cover.blank{border:2px dashed #1E54A3;background:#fbfaf7}
+.cover.blank .star{position:absolute;left:0;right:0;top:30%;bottom:34%;display:grid;place-items:center}
+.cover.blank .plus{position:static;transform:none;font:400 76px/1 "Space Mono",monospace;color:#1E54A3;opacity:.8}
+.cover.blank .name b{font-size:clamp(20px,2.2vw,28px);line-height:1.05;display:block;max-width:100%}
+.cover.blank .name{right:12px}
 </style>
 </head>
 <body>
@@ -87,7 +92,15 @@ document.getElementById('stand').innerHTML = people().map((m, n) => {
       <img src="${thumb(p)}" alt="" loading="lazy"><span>${p.name}</span></button>`).join('')}
   </div>`;
 }).join('');
-document.querySelectorAll('.cover,.guest').forEach(b => b.onclick = () => open(+b.dataset.i, b));
+const joinSeat = joinDialog();
+document.getElementById('stand').insertAdjacentHTML('beforeend', OPEN_SEATS.map((s, k) => `<div class="cell">
+    <button class="cover blank" type="button" data-open="${k}" aria-label="Open seat: ${s.role}" style="--bg:transparent;--fg:#1E54A3;--mast:#1E54A3">
+      <span class="mast" aria-hidden="true">OOTB</span>
+      <span class="star"><span class="ini plus">+</span></span>
+      <ul class="lines"><li>${s.where}</li><li>Open seat</li></ul>
+      <span class="name"><b>${s.role}</b></span>
+    </button></div>`).join(''));
+document.querySelectorAll('.cover,.guest').forEach(b => b.onclick = () => b.dataset.open !== undefined ? joinSeat(+b.dataset.open, b) : open(+b.dataset.i, b));
 </script>
 </body>
 </html>

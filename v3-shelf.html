@@ -52,6 +52,10 @@ body{margin:0;background:#fff;color:#121212;font-family:"Roboto Mono",ui-monospa
 .piece:hover img,.piece:focus-visible img{filter:drop-shadow(0 16px 14px rgba(30,84,163,.35))}
 .piece:focus-visible{outline:3px solid var(--blue);outline-offset:4px;border-radius:8px}
 .piece.pet{flex:.62 1 0;height:150px;max-width:150px}
+/* open seat: an empty spot on the shelf, drawn as the outline of a pot */
+.piece.empty .ghostpot{width:74%;height:64%;margin-bottom:10px;display:grid;place-items:center;font:400 46px "Space Mono",monospace;color:#1E54A3;
+  border:2px dashed #a8733f;border-radius:46% 46% 16% 16%/38% 38% 10% 10%;background:rgba(255,255,255,.38)}
+.piece.empty:hover .ghostpot{background:rgba(255,214,102,.45)}
 .shelf .tags .tape.pet{font-size:12px}
 
 /* greenware pot, drawn in CSS, for anyone without a photo yet */
@@ -95,7 +99,8 @@ const open = teamPopup({
 const tilt = () => (Math.random() * 6 - 3).toFixed(1) + 'deg';
 /* Each person keeps their pet beside them. Groups are packed onto shelves:
    about 4 people wide on desktop, 2 on phones (a pet takes a bit over half a spot). */
-const groups = people().map(m => [m, ...petsOf(m)]);
+const joinSeat = joinDialog();
+const groups = [...people().map(m => [m, ...petsOf(m)]), ...OPEN_SEATS.map((s, k) => [{open: true, k, name: s.role, role: s.where}])];
 const width = g => g.reduce((w, m) => w + (m.pet ? .6 : 1), 0);
 function shelves(cap){
   const rows = [[]];
@@ -105,7 +110,7 @@ function shelves(cap){
   });
   return rows;
 }
-const piece = m => `<button class="piece${m.pet ? ' pet' : ''}" type="button" data-i="${idx(m)}" aria-label="Meet ${m.name}, ${m.role}">${
+const piece = m => m.open ? `<button class="piece empty" type="button" data-open="${m.k}" aria-label="Open seat: ${m.name}"><span class="ghostpot">+</span></button>` : `<button class="piece${m.pet ? ' pet' : ''}" type="button" data-i="${idx(m)}" aria-label="Meet ${m.name}, ${m.role}">${
   photo(m) ? `<img src="${thumb(m)}" alt="" loading="lazy">` : `<span class="pot" aria-hidden="true"><i class="b"></i><i class="n"></i><i class="l"></i><b>${m.name[0]}</b></span>`}</button>`;
 const label = m => `<span class="slot${m.pet ? ' pet' : ''}"><span class="tape${m.pet ? ' pet' : ''}" style="transform:rotate(${tilt()})">${m.name}<small>${m.pet ? '' : m.role}</small></span></span>`;
 const phone = matchMedia('(max-width:760px)');
@@ -115,7 +120,7 @@ function render(){
     <div class="plank"></div>
     <div class="tags" style="position:relative;top:-27px;margin-bottom:-20px">${row.map(label).join('')}</div>
   </div>`).join('');
-  document.querySelectorAll('.piece').forEach(b => b.onclick = () => open(+b.dataset.i, b));
+  document.querySelectorAll('.piece').forEach(b => b.onclick = () => b.dataset.open !== undefined ? joinSeat(+b.dataset.open, b) : open(+b.dataset.i, b));
 }
 render();
 phone.addEventListener('change', render);

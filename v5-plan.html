@@ -41,6 +41,7 @@ body{margin:0;background:#fff;color:#121212;font-family:"Roboto Mono",ui-monospa
   filter:drop-shadow(2px 0 0 #fff) drop-shadow(-2px 0 0 #fff) drop-shadow(0 2px 0 #fff) drop-shadow(0 -2px 0 #fff) drop-shadow(0 10px 10px rgba(0,0,0,.3))}
 .spot .ini{width:120px;height:120px;border:1.5px dashed var(--ink);border-radius:50%;display:grid;place-items:center;font:800 54px "Space Mono",monospace;margin-bottom:30px}
 /* crosshair when you point at someone */
+.spot .ini.open{color:#ffd666;border-color:#ffd666;font-weight:400}
 .spot::after{content:"";position:absolute;inset:-6px;border:1.5px solid #ffd666;opacity:0;transition:opacity .2s;
   -webkit-mask:linear-gradient(#000 0 0) top left/14px 14px no-repeat,linear-gradient(#000 0 0) top right/14px 14px no-repeat,linear-gradient(#000 0 0) bottom left/14px 14px no-repeat,linear-gradient(#000 0 0) bottom right/14px 14px no-repeat;
           mask:linear-gradient(#000 0 0) top left/14px 14px no-repeat,linear-gradient(#000 0 0) top right/14px 14px no-repeat,linear-gradient(#000 0 0) bottom left/14px 14px no-repeat,linear-gradient(#000 0 0) bottom right/14px 14px no-repeat}
@@ -81,7 +82,13 @@ document.getElementById('stations').innerHTML = people().map((m, n) => {
     <div class="key"><b>${m.name}</b><span>${m.role}</span>${pets.length ? `<span class="with">with ${pets.map(p => p.name).join(', ')}</span>` : ''}</div>
   </div>`;
 }).join('');
-document.querySelectorAll('.spot').forEach(b => b.onclick = () => open(+b.dataset.i, b));
+const joinSeat = joinDialog();
+document.getElementById('stations').insertAdjacentHTML('beforeend', OPEN_SEATS.map((s, k) => `<div class="station">
+    <i class="dim"></i>
+    <div class="spots"><button class="spot" type="button" data-open="${k}" aria-label="Open seat: ${s.role}"><span class="ini open">+</span></button></div>
+    <div class="key"><b>${s.role}</b><span>${s.where}</span><span class="with">Open seat, take this seat</span></div>
+  </div>`).join(''));
+document.querySelectorAll('.spot').forEach(b => b.onclick = () => b.dataset.open !== undefined ? joinSeat(+b.dataset.open, b) : open(+b.dataset.i, b));
 </script>
 </body>
 </html>

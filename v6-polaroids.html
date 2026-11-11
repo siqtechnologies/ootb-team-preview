@@ -58,6 +58,7 @@ body{margin:0;background:#fff;color:#121212;font-family:"Roboto Mono",ui-monospa
 }
 .swipe{display:none;text-align:center;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#7a6e5f;margin:0 0 6px}
 .pol-head h2{font-family:"Space Mono",monospace;font-weight:700;letter-spacing:-.03em;text-transform:none;font-size:clamp(32px,6vw,52px)}
+.pol .ini.open{color:#1E54A3;font-weight:400;border:2px dashed #1E54A3;border-radius:6px;display:grid;place-items:center;width:100%;height:100%;box-sizing:border-box}
 </style>
 </head>
 <body>
@@ -75,12 +76,13 @@ body{margin:0;background:#fff;color:#121212;font-family:"Roboto Mono",ui-monospa
 versionNav('v6-polaroids.html');
 const open = teamPopup({ photoBg: () => '#c9dcf4 url(img/bg.webp) center/cover' });
 const TILTS = [-4, 3, -2, 5, -3, 2, -5, 4];
-const pol = (m, mini) => `<button class="pol${mini ? ' mini' : ''}" type="button" data-i="${idx(m)}" aria-label="Meet ${m.name}, ${m.role}"
+const joinSeat = joinDialog();
+const pol = (m, mini) => m.open ? `<button class="pol" type="button" data-open="${m.k}" aria-label="Open seat: ${m.name}" style="--tilt:${TILTS[(m.k + 3) % TILTS.length]}deg"><span class="pic"><span class="ini open">+</span></span><span class="cap">${m.name}<small>${m.role}</small></span></button>` : `<button class="pol${mini ? ' mini' : ''}" type="button" data-i="${idx(m)}" aria-label="Meet ${m.name}, ${m.role}"
   style="${mini ? '' : `--tilt:${TILTS[idx(m) % TILTS.length]}deg`}">${mini ? '<i class="peg2"></i>' : ''}
   <span class="pic">${photo(m) ? `<img src="${thumb(m)}" alt="" loading="lazy">` : `<span class="ini">${m.name[0]}</span>`}</span>
   <span class="cap">${m.name}<small>${m.role}</small></span></button>`;
 /* 4 people per string; on phones each string scrolls sideways */
-const ppl = people(), rows = [];
+const ppl = [...people(), ...OPEN_SEATS.map((s, k) => ({open: true, k, name: s.role, role: s.where}))], rows = [];
 for (let i = 0; i < ppl.length; i += 4) rows.push(ppl.slice(i, i + 4));
 document.getElementById('lines').innerHTML = rows.map((row, r) => `<div class="line">
   ${r === 0 ? '<p class="swipe">Swipe for more</p>' : ''}
@@ -88,7 +90,7 @@ document.getElementById('lines').innerHTML = rows.map((row, r) => `<div class="l
     const pets = petsOf(m), drop = [0, 18, 22, 0][k] || 0;
     return `<li class="${pets.length ? 'has-pet' : ''}" style="--drop:${drop}px"><i class="peg"></i>${pol(m)}${pets.map(p => pol(p, true)).join('')}</li>`;
   }).join('')}</ul></div>`).join('');
-document.querySelectorAll('.pol').forEach(b => b.onclick = e => { e.stopPropagation(); open(+b.dataset.i, b); });
+document.querySelectorAll('.pol').forEach(b => b.onclick = e => { e.stopPropagation(); b.dataset.open !== undefined ? joinSeat(+b.dataset.open, b) : open(+b.dataset.i, b); });
 </script>
 </body>
 </html>

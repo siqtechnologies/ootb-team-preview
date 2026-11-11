@@ -64,6 +64,13 @@ body{margin:0;background:#fff;color:#121212;font-family:"Roboto Mono",ui-monospa
 @keyframes swing{0%{transform:rotate(var(--tilt))}25%{transform:rotate(calc(var(--tilt) + 5deg))}50%{transform:rotate(calc(var(--tilt) - 3deg))}75%{transform:rotate(calc(var(--tilt) + 1.5deg))}100%{transform:rotate(var(--tilt))}}
 /* not glazed yet: bisque tile */
 .tile.bisque .glaze{display:none}
+/* open seats: an unglazed tile with a pencil outline, waiting for a name */
+.tile.openseat .body{border:2px dashed #8b6b4a;background:linear-gradient(#f4ecdc,#eadfc9)}
+.tile.openseat .plus{position:absolute;left:0;right:0;top:20%;text-align:center;font:400 84px/1 "Space Mono",monospace;color:var(--blue);opacity:.85}
+.tile.openseat .label b{color:var(--blue)}
+.tile.openseat .label small{display:block;margin-top:3px}
+.tile.openseat .label .cta{display:inline-block;margin-top:5px;font-size:10px;border-bottom:1px solid var(--blue);color:var(--blue);opacity:1}
+.tile.openseat:hover .plus,.tile.openseat:focus-visible .plus{opacity:1}
 /* pet tile, hanging off the bottom of its person's tile */
 .tiles li.has-pet{margin-bottom:150px}
 .tile.mini{position:absolute;right:-26px;top:calc(34px + 100% * 0);width:62%;margin-top:0}
@@ -81,7 +88,7 @@ body{margin:0;background:#fff;color:#121212;font-family:"Roboto Mono",ui-monospa
 <section class="tiles-sec" aria-label="Meet the OOTB team">
   <header class="tiles-head">
     <h2>Meet the team</h2>
-    <p>Click on anyone to get to know them.</p>
+    <p>Click on anyone to get to know them. A blank tile is an open seat, click it to join us.</p>
   </header>
   <ul class="tiles" id="tiles"></ul>
 </section>
@@ -126,6 +133,19 @@ people().forEach(m => {
   li.appendChild(tile(m));
   petsOf(m).forEach(p => { li.classList.add('has-pet'); li.appendChild(tile(p, ' mini')); });
   ul.appendChild(li);
+});
+
+/* open seats: blank tiles, click to ask to join */
+const joinSeat = joinDialog();
+OPEN_SEATS.forEach((seat, k) => {
+  const li = document.createElement('li');
+  const b = document.createElement('button');
+  b.className = 'tile bisque openseat'; b.type = 'button'; b.setAttribute('aria-label', `Open seat: ${seat.role}`);
+  b.style.cssText = `--tilt:${tilt(20 + k)}`;
+  b.innerHTML = `<span class="body"><span class="plus">+</span>
+      <span class="label"><b>${seat.role}</b><small><span>${seat.where}</span></small><small><span class="cta">Take this seat</span></small></span></span>`;
+  b.onclick = e => { e.stopPropagation(); joinSeat(k, b); };
+  li.appendChild(b); ul.appendChild(li);
 });
 </script>
 </body>
