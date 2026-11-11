@@ -34,6 +34,7 @@ const VERSIONS = [
   ["v5-plan.html", "Studio plan"],
   ["v6-polaroids.html", "Polaroids"],
   ["v7-covers.html", "Magazine covers"],
+  ["v8-open-seats.html", "Open seats"],
 ];
 function versionNav(active){
   const nav = document.createElement('nav');
