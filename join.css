@@ -1,0 +1,18 @@
+/* "Take a seat" dialog, shared by every version */
+.join{position:fixed;inset:0;z-index:60;display:none;place-items:center;padding:16px;background:rgba(10,24,48,.72);font-family:"Roboto Mono",ui-monospace,monospace;color:#121212}
+.join.open{display:grid;animation:tm-fade .2s}
+.jcard{position:relative;width:min(520px,100%);max-height:calc(100vh - 32px);overflow:auto;background:#fff;border-radius:20px;padding:32px 30px 26px;box-shadow:0 30px 80px rgba(0,0,0,.4);animation:tm-rise .25s}
+.jcard .role{font-size:12px;text-transform:uppercase;letter-spacing:.14em;color:#1E54A3;margin:0 0 4px}
+.jcard h3{margin:0 0 8px;font:700 30px/1.05 "Space Mono",monospace;letter-spacing:-.03em}
+.jcard .lede{margin:0 0 18px;font-size:14px;line-height:1.6;color:#444}
+.jcard label{display:block;margin:0 0 12px;font-size:12px;color:#555}
+.jcard input,.jcard textarea,.jcard select{display:block;width:100%;box-sizing:border-box;margin-top:4px;font:inherit;font-size:14px;color:#121212;padding:10px 12px;border:1.5px solid #cfd6e2;border-radius:10px;background:#fff}
+.jcard textarea{min-height:90px;resize:vertical}
+.jcard input:focus,.jcard textarea:focus,.jcard select:focus{outline:2px solid #1E54A3;border-color:#1E54A3}
+.jcard .go{margin-top:6px;width:100%;font:inherit;font-weight:500;font-size:15px;cursor:pointer;border:0;border-radius:30px;padding:12px;background:#1E54A3;color:#fff}
+.jcard .go:hover{background:#163f7d}
+.jcard .x{position:absolute;top:10px;right:12px;width:40px;height:40px;font-size:26px;line-height:1;border:0;background:none;cursor:pointer;color:#121212}
+.jcard .fine{margin:12px 0 0;font-size:11px;color:#777;line-height:1.5}
+.jcard .done{display:none;text-align:center;padding:24px 0 8px}
+.jcard .done b{display:block;font:700 26px "Space Mono",monospace;margin-bottom:8px}
+.jcard.sent form{display:none}.jcard.sent .done{display:block}

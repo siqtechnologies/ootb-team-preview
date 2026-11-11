@@ -7,6 +7,7 @@
 <meta name="robots" content="noindex, nofollow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&family=League+Spartan:wght@800&family=Didact+Gothic&family=Space+Mono:wght@400;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="join.css">
 <style>
 body{margin:0;background:#fff;color:#121212;font-family:"Space Mono",ui-monospace,monospace}
 
@@ -39,6 +40,12 @@ body{margin:0;background:#fff;color:#121212;font-family:"Space Mono",ui-monospac
 .cut .tip{position:absolute;left:50%;top:-4px;transform:translate(-50%,-100%);white-space:nowrap;pointer-events:none;
   background:var(--blue);color:#fff;font:700 12px "Space Mono",monospace;padding:3px 10px;border-radius:20px;opacity:0;transition:opacity .2s}
 .cut:hover .tip,.cut:focus-visible .tip{opacity:1}
+.cut.openseat svg{width:100%;height:100%;display:block;overflow:visible}
+.cut.openseat .q{font:700 46px "Fredoka",sans-serif;fill:#1E54A3;stroke:#fff;stroke-width:3px;paint-order:stroke;transition:transform .25s;transform-box:fill-box;transform-origin:center}
+.cut.openseat:hover .q,.cut.openseat:focus-visible .q{transform:scale(1.15) rotate(-6deg)}
+.cut.openseat .ghost{fill:rgba(255,255,255,.85);stroke:#1E54A3;stroke-width:1.2;stroke-dasharray:3 3}
+.cut.openseat .tip{background:#ffd666;color:#121212}
+.nm.openlabel{color:#1E54A3;font-weight:400}
 .also{text-align:center;margin:22px 0 0;font-size:13px}
 .also button{font:inherit;font-weight:700;cursor:pointer;border:1.5px solid var(--blue);color:var(--blue);background:#fff;border-radius:20px;padding:4px 14px;margin:4px}
 .also button:hover{background:var(--blue);color:#fff}
@@ -82,6 +89,7 @@ body{margin:0;background:#fff;color:#121212;font-family:"Space Mono",ui-monospac
   <a href="v5-plan.html" style="color:#121212;text-decoration:none;padding-bottom:2px;border-bottom:2px solid transparent">Studio plan</a>
   <a href="v6-polaroids.html" style="color:#121212;text-decoration:none;padding-bottom:2px;border-bottom:2px solid transparent">Polaroids</a>
   <a href="v7-covers.html" style="color:#121212;text-decoration:none;padding-bottom:2px;border-bottom:2px solid transparent">Magazine covers</a>
+  <a href="v8-open-seats.html" style="color:#121212;text-decoration:none;padding-bottom:2px;border-bottom:2px solid transparent">Open seats</a>
 </nav>
 
 <section class="ootb-team" aria-label="Meet the OOTB team">
@@ -103,6 +111,7 @@ body{margin:0;background:#fff;color:#121212;font-family:"Space Mono",ui-monospac
   </article>
 </div>
 
+<script src="join.js"></script>
 <script>
 /* Layout is measured on Joanna's 385 x 625 poster.
    box = where the cut-out sits, label = [x, y, rotation] of the name, up = turn that makes the person upright in the popup.
@@ -119,12 +128,11 @@ const TEAM = [
    bio:"Meet Janice, a clay enthusiast with too many hobbies and not enough hours. She makes whimsical ceramics inspired by everyday things and joined OOTB to help others fall in love with clay, wobbles and all. She is also a proud mom to 2 cats and one puppy. If she's not at the studio, she's probably thinking about being at the studio."},
   {name:"Remy", role:"Chief greeter", pet:true, box:[200,387,268,435], label:[276,412,90], tags:["Greeting everyone","Floor supervisor","Paid in treats"],
    bio:"Meet Remy, OOTB's cutest employee. He's just a puppy but already has a full time job greeting everyone who walks in. You can find him at the studio on occasional weekdays, supervising from the floor and accepting treats as payment."},
-  {name:"Nadine", role:"OOTB team", box:[23,454,169,512], label:[28,438,-90], up:90, tags:[], bio:"Bio coming soon."},
   {name:"Bonnie", role:"Instructor", box:[189,446,340,513], label:[350,440,90], up:-90, tags:["Multidisciplinary artist","3 years in ceramics","Nature and movies"],
    bio:"I'm a multidisciplinary artist and I am one of the instructors at OOTB. I have been working with ceramics for about three years now. Outside of ceramics, I enjoy being outside in nature and watching movies. My teaching philosophy is that failure is a part of great artmaking!"},
   {name:"Anie", role:"Instructor", tags:["Organic shaped vessels","Candle lit dinners","Patience and intention"],
    bio:"Meet Anie! An instructor at OOTB who loves to make organic shaped vessels. Outside of making pots, she loves to bike around the city and host candle lit dinner parties with friends. She joined OOTB to combine her love of pottery and hosting, to build a community and teach skills of patience, gratitude, and intentionality."},
-  {name:"Emma", role:"OOTB team", tags:[], bio:"Bio coming soon."},
+  {name:"Qi", role:"OOTB team", tags:[], bio:"Qi is joining the team. Bio coming soon."},
 ];
 
 const board = document.getElementById('board'), also = document.getElementById('also'), pop = document.getElementById('pop');
@@ -155,6 +163,35 @@ const els = TEAM.map((m, i) => {
   return b;
 });
 if (!also.querySelector('button')) also.remove();
+
+/* Open seats: a ghost of a person with a question mark, sitting at a wheel. Tap one to ask to join (preview, sends nothing). */
+const joinSeat = joinDialog();
+const SEAT_SVG = flip => `<svg viewBox="0 0 146 58" aria-hidden="true">
+  <g${flip ? ' transform="translate(146 0) scale(-1 1)"' : ''}>
+    <circle cx="112" cy="29" r="25" fill="#fff" stroke="#cfd8e6"/><circle cx="112" cy="29" r="15" fill="#eef3fa" stroke="#d7dfec"/><circle cx="112" cy="29" r="4" fill="#cfd8e6"/>
+    <path class="ghost" fill="none" d="M52 14 Q76 8 92 20"/><path class="ghost" fill="none" d="M52 44 Q76 50 92 38"/>
+    <rect class="ghost" x="41" y="8" width="19" height="42" rx="9.5"/><circle class="ghost" cx="35" cy="29" r="11.5"/>
+  </g>
+  <text class="q" x="${flip ? 111 : 35}" y="43" text-anchor="middle">?</text></svg>`;
+[{k:0, box:[23,454,169,512], label:[28,438,-90], word:'Instructor'},
+ {k:1, box:[23,538,169,596], label:[28,522,-90], word:'Assistant'},
+ {k:2, box:[189,538,340,596], label:[350,532,90], word:'You?', flip:true}].forEach(o => {
+  const b = document.createElement('button');
+  b.type = 'button'; b.className = 'cut openseat'; b.setAttribute('aria-label', 'Open seat: ' + OPEN_SEATS[o.k].role);
+  const [x1, y1, x2, y2] = o.box;
+  Object.assign(b.style, {left: X(x1), top: Y(y1), width: X(x2 - x1), height: Y(y2 - y1)});
+  b.innerHTML = SEAT_SVG(o.flip) + '<span class="tip">Take this seat</span>';
+  b.onclick = () => joinSeat(o.k, b);
+  board.appendChild(b);
+  const n = document.createElement('span');
+  n.className = 'nm openlabel'; n.textContent = o.word;
+  Object.assign(n.style, {left: X(o.label[0]), top: Y(o.label[1])});
+  n.style.setProperty('--r', o.label[2] + 'deg');
+  board.appendChild(n);
+});
+const hint = document.createElement('p');
+hint.className = 'also'; hint.textContent = 'The question marks are open seats. Tap one to join us.';
+board.after(hint);
 
 let cur = 0, opener = null;
 function fill(i){
